@@ -1,7 +1,6 @@
 import { Container, Rating, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import img from '../../images/helmet1.png'
 import { useForm } from "react-hook-form";
 import Navigation from '../Shared/Navigation/Navigation';
 import Footer from '../Shared/Footer/Footer';
@@ -47,13 +46,12 @@ const Purchase = () => {
                             textAlign: 'center',
                             pb: { md: 15 }
                         }}>
-                            <img width="70%" src={img} alt="" />
+                            <img width="70%" src='https://i.ibb.co/HhcFLTn/05-Main-Shop-Grid-View-removebg-preview.png' alt="" />
                         </Item>
                         <Item sx={{ pr: { md: 18 }, py: 0 }}>
                             <Box sx={{
                                 bgcolor: 'white',
                                 height: '100%',
-
                                 width: { md: '85%' }
                             }}>
 
@@ -76,15 +74,12 @@ const Purchase = () => {
 
                                             <Rating
                                                 name="half-rating-read"
-                                                sx={{
-                                                    mt: 1,
-                                                    fontSize: 14,
-                                                }}
+                                                sx={{ mt: 1, fontSize: 14, }}
                                                 defaultValue={4.5}
                                                 precision={0.5}
                                                 readOnly />
                                         </Box>
-                                       <Typography variant='p'>Address</Typography>
+                                        <Typography variant='p'>Address</Typography>
                                         <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />
                                         <Typography variant='p'>Address</Typography>
                                         <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />

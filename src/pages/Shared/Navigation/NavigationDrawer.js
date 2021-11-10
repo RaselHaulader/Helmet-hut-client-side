@@ -5,6 +5,8 @@ import Button from '@mui/material/Button';
 import List from '@mui/material/List';
 import ToggleButton from '@mui/material/ToggleButton';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
+import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
+import { NavLink } from 'react-router-dom';
 
 export default function NavigationDrawer() {
   const [state, setState] = React.useState({
@@ -27,24 +29,38 @@ export default function NavigationDrawer() {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-      
+        <NavLink to='/home' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
+          <ListItem button >
+            <ListItemText primary={'Home'} />
+          </ListItem>
+        </NavLink>
+        <NavLink to='/explore' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
+          <ListItem button >
+            <ListItemText primary={'Explore'} />
+          </ListItem>
+        </NavLink>
+        <NavLink to='/dashboard' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
+          <ListItem button >
+            <ListItemText primary={'Dashboard'} />
+          </ListItem>
+        </NavLink>
       </List>
     </Box>
   );
   return (
     <div>
-        <React.Fragment key={'left'}>
-          <Button onClick={toggleDrawer('left', true)}>  <ToggleButton value="center" aria-label="centered">
-        <FormatAlignCenterIcon />
-      </ToggleButton></Button>
-          <Drawer
-            anchor={'left'}
-            open={state['left']}
-            onClose={toggleDrawer('left', false)}
-          >
-            {list('left')}
-          </Drawer>
-        </React.Fragment>
+      <React.Fragment key={'left'}>
+        <Button onClick={toggleDrawer('left', true)}>  <ToggleButton value="center" aria-label="centered">
+          <FormatAlignCenterIcon />
+        </ToggleButton></Button>
+        <Drawer
+          anchor={'left'}
+          open={state['left']}
+          onClose={toggleDrawer('left', false)}
+        >
+          {list('left')}
+        </Drawer>
+      </React.Fragment>
     </div>
   );
 }

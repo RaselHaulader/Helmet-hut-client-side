@@ -32,8 +32,8 @@ const Navigation = () => {
                             <Box sx={{ display: { md: 'block', sm: 'none', xs: 'none' } }}>
                                 <NavLink style={style} activeStyle={activeStyle} to='/home'><Button color="inherit">Home</Button></NavLink>
                                 <NavLink style={style} activeStyle={activeStyle} to='/explore'><Button color="inherit" >Explore</Button></NavLink>
-                                <Button color="inherit">My name</Button>
                                 <NavLink style={style} activeStyle={activeStyle} to='/dashboard'><Button color="inherit" >DashBoard</Button></NavLink>
+                                <Button color="inherit">My name</Button>
                                 <Button color="inherit">LogOut</Button>
                             </Box>
                             <Box sx={{ display: { md: 'none', sm: 'block' } }}>  <NavigationDrawer></NavigationDrawer></Box>

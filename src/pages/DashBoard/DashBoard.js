@@ -6,7 +6,7 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import InboxIcon from '@mui/icons-material/MoveToInbox';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -22,6 +22,7 @@ import AddReviews from '../AddReviews/AddReviews';
 import AddProduct from '../AddProduct/AddProduct';
 import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import Purchase from '../Purchase/Purchase';
+import Login from '../Login/Login';
 
 const drawerWidth = 240;
 
@@ -34,10 +35,10 @@ function DashBoard(props) {
     };
 
     const Navlink = ({ pathname, linkName }) => {
-        return <NavLink to={pathname} style={{ textDecoration: 'none', color:'black' }} activeStyle={{ color: 'tomato' }}>
+        return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
             <ListItem button >
                 <ListItemIcon>
-                    <InboxIcon />
+                    <ArrowForwardIcon />
                 </ListItemIcon>
                 <ListItemText primary={linkName} />
             </ListItem>
@@ -45,7 +46,7 @@ function DashBoard(props) {
     }
     const drawer = (
         <div>
-            <Toolbar />
+            <Toolbar sx={{bgcolor:'tomato', color:'white'}}><Typography variant="h5">User Name</Typography></Toolbar>
             <Divider />
             <List>
                 <Navlink pathname={`/`} linkName="Home" />
@@ -55,7 +56,7 @@ function DashBoard(props) {
                 <Navlink pathname={`${url}/AllOrder`} linkName="Manage All Order" />
                 <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
                 <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Product" />
-                <Navlink pathname={`${url}/MakeAdmin`} linkName="Make Admin" />
+                <Navlink pathname={`${url}/MakeAdmin`} linkName="Add An Admin" />
                 <Navlink pathname={`${url}/signOut`} linkName="Sign Out" />
             </List>
         </div>
@@ -131,7 +132,7 @@ function DashBoard(props) {
                     <Route exact path={path}>
                         <UserOrder></UserOrder>
                     </Route>
-                    <Route  path={`${path}/userOrder`}>
+                    <Route path={`${path}/userOrder`}>
                         <UserOrder></UserOrder>
                     </Route>
                     <Route exact path={`${path}/payment`}>
@@ -153,7 +154,7 @@ function DashBoard(props) {
                         <MakeAdmin></MakeAdmin>
                     </Route>
                     <Route exact path={`${path}/signOut`}>
-                        <Purchase></Purchase>
+                       <Login></Login>
                     </Route>
                     {/* <Route path={`${path}/:topicId`}>
                         <h3>Please select a topic.</h3>

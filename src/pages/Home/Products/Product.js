@@ -1,7 +1,6 @@
 import { Button, Icon, Rating, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
-import helmet from '../../../images/helmet1.png'
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 
@@ -49,7 +48,7 @@ const Product = () => {
                     py: 7,
                     bgcolor: '#f4f4f4'
                 }}>
-                    <img width="60%" src={helmet} alt="" />
+                    <img width="60%" src='https://i.ibb.co/HhcFLTn/05-Main-Shop-Grid-View-removebg-preview.png' alt="" />
 
                 </Box>
             </Box>
@@ -90,7 +89,7 @@ const Product = () => {
                         fontWeight: 'bold',
                         color: 'gray'
                     }}>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, sed.
+                   Trendsetting springs for precise functionality ensuring a superior wind and water sealant layer. Unique 3D molded shield designed
                 </Typography>
                 
                 <Box sx={{ display: 'block' }}>

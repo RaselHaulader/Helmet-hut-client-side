@@ -3,6 +3,7 @@ import { Box } from '@mui/system';
 import React from 'react';
 import helmet from '../../../images/helmet1.png'
 import { makeStyles } from '@mui/styles';
+import { Link } from 'react-router-dom';
 
 
 const useStyles = makeStyles({
@@ -15,7 +16,7 @@ const useStyles = makeStyles({
     },
 
 });
-const check = ()=>{
+const check = () => {
     console.log('clicked')
 }
 
@@ -91,9 +92,7 @@ const Product = () => {
                     }}>
                     Lorem ipsum dolor sit amet consectetur adipisicing elit. Provident, sed.
                 </Typography>
-
-
-
+                
                 <Box sx={{ display: 'block' }}>
                     <Rating
                         name="half-rating-read"
@@ -105,23 +104,25 @@ const Product = () => {
                         precision={0.5}
                         readOnly />
                 </Box>
-
                 <Box
                     sx={{
                         display: 'flex',
                         mt: 1
                     }}>
-                    <Box
-                        onClick={check}
-                        className={classes.btn}
-                        sx={{ width: '40%' }}>
-
-                        <Typography
-                            variant="caption"
-                         >
-                            <i class="fas fa-dollar-sign"></i> Purchase Now
-                        </Typography>
+                    <Box sx={{ width: '40%', textAlign: 'center' }}>
+                        <Link to="/purchase" style={{textDecoration:'none', color:'black'}}>
+                            <Box
+                                onClick={check}
+                                className={classes.btn}
+                            >
+                                <Typography
+                                    variant="caption"
+                                >
+                                    <i class="fas fa-dollar-sign"></i> Purchase</Typography>
+                            </Box>
+                        </Link>
                     </Box>
+
 
                     <Box
                         className={classes.btn}

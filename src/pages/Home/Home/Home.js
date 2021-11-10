@@ -1,5 +1,6 @@
 import { Box } from '@mui/system';
 import React from 'react';
+import Explore from '../../Explore/Explore';
 import Footer from '../../Shared/Footer/Footer';
 import Navigation from '../../Shared/Navigation/Navigation';
 import Banner from '../Banner/Banner';
@@ -10,11 +11,8 @@ import Reviews from '../Reviews/Reviews';
 const Home = () => {
     return (
         <div>
-            <Box sx={{ bgcolor: 'black' }}>
-                <Navigation type={{ boxShadow: 0, bgcolor: 'black', color: 'white' }}></Navigation>
-            </Box>
-            <Navigation type={{ boxShadow: 0, bgcolor: 'transparent', color: 'black' }}></Navigation>
-            <Banner></Banner>
+            <Navigation></Navigation>
+             <Banner></Banner>
             <Products></Products>
             <Feature></Feature>
             <Reviews></Reviews>

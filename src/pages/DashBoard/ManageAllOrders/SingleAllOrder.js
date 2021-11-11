@@ -3,7 +3,8 @@ import React from 'react';
 import { Rating, Typography } from '@mui/material';
 
 
-const SingleAllOrder = () => {
+const SingleAllOrder = (props) => {
+    const { img, title, name,email,description,address, price, status,user } = props.order
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -31,23 +32,28 @@ const SingleAllOrder = () => {
             }}
         >
             <Item >
-                <Box sx={{ bgcolor: '#f4f4f4', p: 1 }}> <img width="100%" src="https://i.ibb.co/vc4884f/hl7-removebg-preview.png" alt="" /></Box>
+                <Box sx={{ bgcolor: '#f4f4f4', p: 1 }}> <img width="100%" src={img} alt="" /></Box>
             </Item>
             <Item >
                 <Box >
-                    <Typography variant="h6">Product bame</Typography>
-                    <Typography variant="caption">Product bame</Typography> <br />
+                    <Typography variant="h6">{name}</Typography>
+                    <Typography variant="caption">{title}</Typography> <br />
                     <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                 </Box>
             </Item>
             <Item>
-                <Typography paragraph>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis possimus accusantium ad delectus ea eius deserunt sed inventore accusamus modi.</Typography>
+                <Box >
+                    <Typography variant="h6">{user}</Typography>
+                    <Typography variant='p'>{email}</Typography> <br />
+                    <Typography variant='p'>{address}</Typography> <br />
+                    <Typography variant="caption">{description}</Typography> <br />
+                </Box>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                $10
+                ${price}
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                Pending
+                {status}
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
                 Delete

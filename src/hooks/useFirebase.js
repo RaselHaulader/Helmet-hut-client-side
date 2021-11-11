@@ -12,22 +12,14 @@ const useFirebase = () => {
   const [error, setError] = useState('')
 
 
-  //loading
+  
 
   // google sign in
   const googleLogIn = (location,history) => {
-    const uri = location?.state?.from || '/'
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        const user = result.user;
-        setUser(user)
-        history.push(uri)
-        setError('')
-        console.log(user)
-      }).catch((error) => {
-        const errorMessage = error.message;
-        setError(errorMessage)
-      });
+   
+  return  signInWithPopup(auth, googleProvider)
+  .finally(()=>setLoading(false))
+     
   }
   // log out
   const logOut = () => {
@@ -47,7 +39,6 @@ const useFirebase = () => {
    })
       
   }
-
 
   // sign in with email
   const loginUser=(email,password)=> {

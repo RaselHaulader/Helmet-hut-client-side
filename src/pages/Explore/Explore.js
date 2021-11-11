@@ -28,7 +28,7 @@ const Explore = () => {
 
                     <Box sx={{ display: 'grid', gridTemplateColumns: { md: 'repeat(4, 1fr)', sm: 'repeat(1, 1fr)' } }}>
                         {
-                            products.map(product => <Product product={product}></Product>)
+                            products.map(product => <Product key={product._id} product={product}></Product>)
                         }
                     </Box>
                 </Box>

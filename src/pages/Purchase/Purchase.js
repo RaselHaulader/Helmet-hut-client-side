@@ -1,11 +1,12 @@
-import { Container, Rating, Typography } from '@mui/material';
+import { Container, Rating, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Navigation from '../Shared/Navigation/Navigation';
 import Footer from '../Shared/Footer/Footer';
-import { useParams } from 'react-router';
+import { useHistory, useParams } from 'react-router';
 import axios from 'axios'
+import useAuth from '../../hooks/useAuth';
 
 
 function Item(props) {
@@ -27,6 +28,9 @@ function Item(props) {
 const Purchase = () => {
     const [product, setProduct] = useState([])
     const { id } = useParams();
+    const { user } = useAuth()
+    const history = useHistory()
+    const formReset = useRef()
 
 
     useEffect(() => {
@@ -35,13 +39,27 @@ const Purchase = () => {
             .then(res => setProduct(res.data))
         window.scroll(0, 0)
     }, [])
+
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+
+    const onSubmit = data => {
+        console.log(data);
+        const productWithoutId = {...product}
+        delete productWithoutId._id
+        console.log(productWithoutId)
+        axios.post('http://localhost:5000/placeOrder', {...data, ...productWithoutId})
+            .then(res => {
+
+                console.log(res)
+                if (res.data.acknowledged) {
+                    alert('orderPlaced')
+                    formReset.current.reset()
+                }
+            })
+    }
 
     const inputStyle = {
         width: '100%',
-        border: '1px solid rgb(207, 207, 207)',
-        padding: '7px 0',
         margin: '5px 0'
     }
     return (
@@ -55,7 +73,7 @@ const Purchase = () => {
                         </Item>
                         <Item sx={{ pr: { md: 18 }, py: 0 }}>
                             <Box sx={{ bgcolor: 'white', height: '100%', width: { md: '85%' } }}>
-                                <form style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} onSubmit={handleSubmit(onSubmit)}>
+                                <form ref={formReset} style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} onSubmit={handleSubmit(onSubmit)}>
                                     <Box sx={{ px: 2 }}>
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                                             <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>{product?.name}</Typography>
@@ -71,15 +89,19 @@ const Purchase = () => {
 
                                             <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                                         </Box>
-                                        <Typography variant='p'>Address</Typography>
-                                        <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />
-                                        <Typography variant='p'>Address</Typography>
-                                        <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />
-                                        <Typography variant='p'>Address</Typography>
-                                        <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />
-                                        <Typography variant='p'>Address</Typography>
-                                        <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />
-                                        {errors.exampleRequired && <span>This field is required</span>}
+
+                                        <TextField style={inputStyle} defaultValue={user.displayName} id="standard-basic" label="Name" variant="outlined"  {...register("user")} />
+
+                                        <TextField style={inputStyle} defaultValue={user.email} id="standard-basic" label="Email" variant="outlined"  {...register("email")} />
+
+                                        <TextField id="standard-basic" variant="outlined" label="Address" style={inputStyle}  {...register("address", { required: true })} />
+                                        {errors.address && <span>This field is required</span>}
+
+                                        <TextField type='date' style={inputStyle} id="standard-basic" variant="outlined"  {...register("date", { required: true })} />
+                                        {errors.date && <span>This field is required</span>}
+
+                                        <TextField multiline label="Description" style={inputStyle} id="standard-basic" variant="outlined"  {...register("description", { required: true })} />
+                                        {errors.description && <span>This field is required</span>}
                                     </Box>
                                     <input style={{ width: '100%', border: 'none', padding: '10px 15px', background: 'tomato' }} type="submit" />
                                 </form>

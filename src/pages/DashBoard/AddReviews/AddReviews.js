@@ -1,19 +1,43 @@
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import axios from 'axios';
+import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
+import useAuth from '../../../hooks/useAuth';
+import UserOrder from '../UsersOrder/UserOrder';
 import Ratings from './Ratings';
 
 const AddReviews = () => {
-    const [value, setValue] = React.useState(0);
- 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data,value);
+    const [rating, setValue] = React.useState(0);
+    const { user } = useAuth()
+    const inputEl  = useRef()
+    const [ratingWarning, setRatingWarning] = useState('')
+
+    const { register, handleSubmit, reset, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        if (rating > 0) {
+            setRatingWarning('')
+            const reviewerImg = {}
+            user.photoURL ? reviewerImg.img = user.photoURL : reviewerImg.img = 'https://i.ibb.co/TbH5Zfw/user-circle-icon-152504.png'
+            console.log({ ...data, rating, ...reviewerImg })
+          
+            axios.post('http://localhost:5000/addReview', { ...data, rating, ...reviewerImg })
+                .then(res => {
+                    reset()
+                    alert('thank for your valuable review')
+                    console.log(res)
+                    inputEl.current.reset()
+                   
+                })
+        } else if (rating === 0) {
+            setRatingWarning('Rating please')
+        }
+    };
 
     const inputStyle = {
         width: '100%',
         border: '1px solid rgb(207, 207, 207)',
-        padding: '7px 0',
+        padding: '7px 2px',
         margin: '5px 0'
     }
     console.log("example");
@@ -26,13 +50,14 @@ const AddReviews = () => {
                         <h1>WRITE A REVIEW  </h1>
                         <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
                     </Box>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Typography variant="h6">Review Title</Typography>
-                        <input style={inputStyle} defaultValue="test" {...register("example")} />
-                        <Typography variant="h6">Review Details</Typography>
-                        <textarea style={{ ...inputStyle, height: '200px' }} {...register("exampleRequired", { required: true })} />
-                        {errors.exampleRequired && <span>This field is required</span>}
-                        <Box sx={{ display: 'flex' }}> <Typography variant="p">Star Rating : </Typography><Ratings value={value} setValue={setValue}></Ratings> </Box>
+                    <form ref={inputEl} onSubmit={handleSubmit(onSubmit)}>
+                        <Typography variant="p">Your Name</Typography>
+                        <input style={inputStyle} defaultValue={user.displayName} {...register("name")} />
+
+                        <Typography variant="p">Review Details</Typography>
+                        <textarea  minLength='50' placeholder='Write your review min 50 character' style={{ ...inputStyle, height: '200px' }} {...register("details", { required: true })} />
+                        {errors.details && <span>This field is required</span>}
+                        <Box sx={{ display: 'flex' }}> <Typography variant="p">Star Rating : </Typography><Ratings value={rating} setValue={setValue}></Ratings><span>{ratingWarning}</span> </Box>
                         <input type="submit" />
                     </form>
                 </Box>

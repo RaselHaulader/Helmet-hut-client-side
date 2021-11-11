@@ -31,19 +31,19 @@ function Item(props) {
       />
     );
   }
-const Review = () => {
+const Review = (props) => {
+    const {img,name,rating,details} = props.review
     const classes = useStyles();
     return (
         <Item className={classes.shadow}>
             <Box>
                 <Box >
-                    <img style={{borderRadius:'50%'}} width="30%" height="30%" src='https://imgwiz.com/images/2021/08/27/Barrett-Kosh.jpg' alt="" />
+                    <img style={{borderRadius:'50%'}} width="30%" height="30%" src={img} alt="" />
                 </Box>
                 <Box>
-                    <h3>Name</h3>
-                    <small></small>
-                    <p>Lorem ipsum dole, animi debitis mollitia laudantium sapiente.</p>
-                    <Rating size="small" name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
+                    <h3>{name}</h3>
+                    <p>{details}</p>
+                    <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                 </Box>
             </Box>
         </Item>

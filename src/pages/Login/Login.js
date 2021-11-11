@@ -5,13 +5,14 @@ import { Box } from '@mui/system';
 import { useForm } from "react-hook-form";
 import Navigation from '../Shared/Navigation/Navigation';
 import { Link, useLocation, useHistory } from 'react-router-dom';
+import axios from 'axios';
 
 
 const Login = () => {
   const location = useLocation()
   const history = useHistory()
   const [page, setPage] = useState('login')
-  const {googleLogIn, loginUser, setUser, auth, setLoading, error, setError, registerUser, updateProfile } = useAuth()
+  const { googleLogIn, loginUser, setUser, auth, setLoading, error, setError, registerUser, updateProfile } = useAuth()
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const togglePage = () => {
@@ -19,15 +20,52 @@ const Login = () => {
     setError('')
   }
 
+  const saveUserInfo = (data) => {
+    console.log(data)
+    axios.post('http://localhost:5000/saveUser', data)
+      .then(res => console.log(res))
+  }
+
+
+  const handleGoogleSignIn = () => {
+    const uri = location?.state?.from || '/'
+    googleLogIn()
+      .then((result) => {
+        const user = result.user;
+        setUser(user)
+        // save user to db
+        const userInfo = {
+          name: user.displayName,
+          email: user.email
+        }
+        saveUserInfo(userInfo)
+        //redirect
+        history.push(uri)
+        setError('')
+        console.log(user)
+      }).catch((error) => {
+        const errorMessage = error.message;
+        setError(errorMessage)
+      });
+  }
+
   const onSubmit = data => {
     // for login
     if (page === "login") {
       console.log(data);
       setLoading(true)
+      // email login
       loginUser(data.email, data.password)
         .then((userCredential) => {
           const user = userCredential.user;
           setUser(user)
+          // save user to db
+          const userInfo = {
+            name: user.displayName,
+            email: user.email
+          }
+          saveUserInfo(userInfo)
+          // redirect to location
           history.push(location?.state?.from?.pathname || '/')
           setError('')
         })
@@ -35,19 +73,23 @@ const Login = () => {
           setError(error.message)
         });
 
-        // for register
+      // for register
     } else if (page === 'register') {
 
       if (data.password === data.confirmPassword) {
         setLoading(true)
-        console.log(data)
+        // creat account
         registerUser(data.email, data.password, data.name)
           .then((userCredential) => {
             const user = userCredential.user;
             setUser(user)
+            // set user name
             updateProfile(auth.currentUser, {
               displayName: data.name
             }).then(() => {
+              //save user to db
+              saveUserInfo({ name: data.name, email: data.email })
+              // redirect to location
               history.push(location?.state?.from?.pathname || '/')
               setError('')
             }).catch((error) => {
@@ -77,7 +119,7 @@ const Login = () => {
             <Box sx={{ textAlign: 'center' }}>
               {page === 'login' ? <h1>LOG IN</h1> : <h1>CREATE AN ACCOUNT</h1>}
               <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
-              <button onClick={()=>googleLogIn(location,history)}>Google Sign In</button>
+              <button onClick={handleGoogleSignIn}>Google Sign In</button>
             </Box>
             <form onSubmit={handleSubmit(onSubmit)}>
 

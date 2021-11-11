@@ -25,7 +25,7 @@ const Products = () => {
                 <Box sx={{ display: 'grid', gridTemplateColumns: { md: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)' } }}>
 
                     {
-                        products.slice(0, 6).map(product => <Product product={product}></Product>)
+                        products.slice(0, 6).map(product => <Product key={product._id} product={product}></Product>)
                     }
                 </Box>
             </Box>

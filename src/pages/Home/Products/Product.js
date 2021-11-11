@@ -15,13 +15,10 @@ const useStyles = makeStyles({
     },
 
 });
-const check = () => {
-    console.log('clicked')
-}
 
-const Product = () => {
+const Product = (props) => {
+    const {name,title,img,price,details,rating,_id} = props.product
     const classes = useStyles();
-
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -48,18 +45,16 @@ const Product = () => {
                     py: 7,
                     bgcolor: '#f4f4f4'
                 }}>
-                    <img width="60%" src='https://i.ibb.co/HhcFLTn/05-Main-Shop-Grid-View-removebg-preview.png' alt="" />
+                    <img width="60%" src={img} alt="" />
 
                 </Box>
             </Box>
             <Box sx={{ pt: 2, textAlign: 'left' }}>
-
                 <Typography
                     variant='p'
                     sx={{ fontSize: 12 }}>
-                    By valentine
+                    {title}
                 </Typography>
-
                 <Typography variant='h3'
                     sx={{
                         mt: 1,
@@ -67,9 +62,8 @@ const Product = () => {
                         fontSize: 16,
                         fontWeight: 'bold'
                     }}>
-                    $249
+                   ${price}
                 </Typography>
-
                 <Typography
                     variant='h3'
                     sx={{
@@ -78,9 +72,8 @@ const Product = () => {
                         fontSize: 17,
                         fontWeight: 'bold'
                     }}>
-                    crimson thunder
+                    {name}
                 </Typography>
-
                 <Typography
                     variant='p'
                     sx={{
@@ -89,11 +82,10 @@ const Product = () => {
                         fontWeight: 'bold',
                         color: 'gray'
                     }}>
-                   Trendsetting springs for precise functionality ensuring a superior wind and water sealant layer. Unique 3D molded shield designed
+                   {details.slice(0,80)}
                 </Typography>
-                
                 <Box sx={{ display: 'block' }}>
-                <Rating size="small" name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
+                <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                 </Box>
                 <Box
                     sx={{
@@ -101,9 +93,8 @@ const Product = () => {
                         mt: 1
                     }}>
                     <Box sx={{ width: '40%', textAlign: 'center' }}>
-                        <Link to="/purchase" style={{textDecoration:'none', color:'black'}}>
+                        <Link to={`/purchase/${_id}`} style={{textDecoration:'none', color:'black'}}>
                             <Box
-                                onClick={check}
                                 className={classes.btn}
                             >
                                 <Typography
@@ -114,7 +105,6 @@ const Product = () => {
                         </Link>
                     </Box>
 
-
                     <Box
                         className={classes.btn}
                         sx={{
@@ -122,7 +112,6 @@ const Product = () => {
                             textAlign: 'center',
                             ml: "4px"
                         }}>
-
                         <Typography
                             variant="caption">
                             <i class="fas fa-cart-plus"></i>

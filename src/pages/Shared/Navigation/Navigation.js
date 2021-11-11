@@ -9,9 +9,10 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { Container } from '@mui/material';
 import NavigationDrawer from './NavigationDrawer';
 import { Link, NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 const Navigation = () => {
-
+    const {user, logOut} = useAuth()
     const activeStyle = {
         fontWeight: "bold",
         color: "red"
@@ -33,8 +34,9 @@ const Navigation = () => {
                                 <NavLink style={style} activeStyle={activeStyle} to='/home'><Button color="inherit">Home</Button></NavLink>
                                 <NavLink style={style} activeStyle={activeStyle} to='/explore'><Button color="inherit" >Explore</Button></NavLink>
                                 <NavLink style={style} activeStyle={activeStyle} to='/dashboard'><Button color="inherit" >DashBoard</Button></NavLink>
-                                <Button color="inherit">My name</Button>
-                                <Button color="inherit">LogOut</Button>
+                                {user?.displayName?<><Button color="inherit">{user?.displayName}</Button>
+                                <Button color="inherit" onClick={logOut}>LogOut</Button></>:  <NavLink style={style} activeStyle={activeStyle} to='/login'><Button color="inherit" >login</Button></NavLink>}
+                               
                             </Box>
                             <Box sx={{ display: { md: 'none', sm: 'block' } }}>  <NavigationDrawer></NavigationDrawer></Box>
                         </Toolbar>

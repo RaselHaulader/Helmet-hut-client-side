@@ -23,12 +23,9 @@ const MakeAdmin = () => {
                         <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
                     </Box>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <Typography variant="h6">Review Title</Typography>
+                        <Typography variant="h6">Email</Typography>
                         <input style={inputStyle} defaultValue="test" {...register("example")} />
-                        <Typography variant="h6">Review Details</Typography>
-                        <textarea style={{ ...inputStyle, height: '200px' }} {...register("exampleRequired", { required: true })} />
-                        {errors.exampleRequired && <span>This field is required</span>}
-                        <input type="submit" />
+                       <input type="submit" />
                     </form>
                 </Box>
             </Box>

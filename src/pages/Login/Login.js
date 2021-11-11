@@ -1,14 +1,106 @@
-import React from 'react';
+import React, { useState } from 'react';
 import useAuth from '../../hooks/useAuth';
-// import useFirebase from '../../hooks/useFirebase';
+import { Button, TextField, Typography } from '@mui/material';
+import { Box } from '@mui/system';
+import { useForm } from "react-hook-form";
+import Navigation from '../Shared/Navigation/Navigation';
+import { Link, useLocation, useHistory } from 'react-router-dom';
+
 
 const Login = () => {
-       const {googleLogIn} = useAuth()
-    return (
-        <div>
-            <button onClick={googleLogIn}>Login</button>
-        </div>
-    );
+  const location = useLocation()
+  const history = useHistory()
+  const [page, setPage] = useState('login')
+  const {googleLogIn, loginUser, setUser, auth, setLoading, error, setError, registerUser, updateProfile } = useAuth()
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  const togglePage = () => {
+    page === 'login' ? setPage('register') : setPage('login')
+    setError('')
+  }
+
+  const onSubmit = data => {
+    // for login
+    if (page === "login") {
+      console.log(data);
+      setLoading(true)
+      loginUser(data.email, data.password)
+        .then((userCredential) => {
+          const user = userCredential.user;
+          setUser(user)
+          history.push(location?.state?.from?.pathname || '/')
+          setError('')
+        })
+        .catch((error) => {
+          setError(error.message)
+        });
+
+        // for register
+    } else if (page === 'register') {
+
+      if (data.password === data.confirmPassword) {
+        setLoading(true)
+        console.log(data)
+        registerUser(data.email, data.password, data.name)
+          .then((userCredential) => {
+            const user = userCredential.user;
+            setUser(user)
+            updateProfile(auth.currentUser, {
+              displayName: data.name
+            }).then(() => {
+              history.push(location?.state?.from?.pathname || '/')
+              setError('')
+            }).catch((error) => {
+              setError(error.message)
+            });
+          })
+          .catch((error) => {
+            setError(error.message)
+          })
+      } else {
+        setError("Password did not matched")
+      }
+    }
+  }
+  const inputStyle = {
+    width: '100%',
+    padding: '7px 0',
+    margin: '5px 0'
+  }
+  return (
+    <div>
+      <Navigation></Navigation>
+
+      <Box>
+        <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Box style={{ boxShadow: '5px 5px 22px -7px gray', borderRadius: '10px' }} sx={{ p: 2, width: { md: '50%', xs: '100%' } }}>
+            <Box sx={{ textAlign: 'center' }}>
+              {page === 'login' ? <h1>LOG IN</h1> : <h1>CREATE AN ACCOUNT</h1>}
+              <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
+              <button onClick={()=>googleLogIn(location,history)}>Google Sign In</button>
+            </Box>
+            <form onSubmit={handleSubmit(onSubmit)}>
+
+              {page !== 'login' && <> <TextField style={inputStyle} id="standard-basic" label="Name" variant="standard"  {...register("name", { required: true })} />
+                {errors.name && <span>This field is required</span>} </>}
+
+              <TextField style={inputStyle} id="standard-basic" label="Email" variant="standard"  {...register("email", { required: true })} />
+              {errors.email && <span>This field is required</span>}
+
+              <TextField id="standard-basic" variant="standard" label="Password" style={inputStyle}  {...register("password", { required: true })} />
+              {errors.password && <span>This field is required</span>}
+
+              {page !== 'login' && <> <TextField style={inputStyle} id="standard-basic" label="Confirm Password" variant="standard"  {...register("confirmPassword", { required: true })} />
+                {errors.confirmPassword && <span>This field is required</span>} </>}
+
+              <input type="submit" /> {page === "login" ? <Button onClick={togglePage} >Create Account</Button> : <Button onClick={togglePage} >Already have an account?</Button>}
+              <Typography paragraph>{error}</Typography>
+            </form>
+          </Box>
+        </Box>
+      </Box>
+    </div>
+  );
 };
 
 export default Login;
@@ -17,7 +109,7 @@ export default Login;
 
 
 
-/* 
+/*
 https://i.ibb.co/G9sfjvM/hl8-removebg-preview.png
 https://i.ibb.co/k2pyf5J/hl9-removebg-preview-1.png
 https://i.ibb.co/kJmcKRt/hl10-removebg-preview.png

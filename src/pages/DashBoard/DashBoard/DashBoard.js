@@ -23,10 +23,13 @@ import AddProduct from '../AddProduct/AddProduct';
 import MakeAdmin from '../../DashBoard/MakeAdmin/MakeAdmin';
 import Login from '../../Login/Login';
 import ManageProducts from '../MangeProducts/ManageProducts';
+import { Button } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
 
 const drawerWidth = 240;
 
 function DashBoard(props) {
+    const { logOut } = useAuth()
     let { path, url } = useRouteMatch();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -35,7 +38,7 @@ function DashBoard(props) {
     };
 
     const Navlink = ({ pathname, linkName }) => {
-        return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={pathname!='/' &&{ color: 'tomato'}}>
+        return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={pathname != '/' && { color: 'tomato' }}>
             <ListItem button >
                 <ListItemIcon>
                     <ArrowForwardIcon />
@@ -46,7 +49,7 @@ function DashBoard(props) {
     }
     const drawer = (
         <div>
-            <Toolbar sx={{bgcolor:'tomato', color:'white'}}><Typography variant="h5">User Name</Typography></Toolbar>
+            <Toolbar sx={{ bgcolor: 'tomato', color: 'white' }}><Typography variant="h5">User Name</Typography></Toolbar>
             <Divider />
             <List>
                 <Navlink pathname={`/`} linkName="Home" />
@@ -57,7 +60,13 @@ function DashBoard(props) {
                 <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
                 <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Products" />
                 <Navlink pathname={`${url}/MakeAdmin`} linkName="Add An Admin" />
-                <Navlink pathname={`${url}/signOut`} linkName="Sign Out" />
+                <ListItem button onClick={logOut}>
+                    <ListItemIcon>
+                        <ArrowForwardIcon />
+                    </ListItemIcon>
+                    <ListItemText primary={'SignOut'} />
+                </ListItem>
+
             </List>
         </div>
     );
@@ -148,13 +157,13 @@ function DashBoard(props) {
                         <AddProduct></AddProduct>
                     </Route>
                     <Route exact path={`${path}/ManageProduct`}>
-                      <ManageProducts></ManageProducts>
+                        <ManageProducts></ManageProducts>
                     </Route>
                     <Route exact path={`${path}/MakeAdmin`}>
                         <MakeAdmin></MakeAdmin>
                     </Route>
                     <Route exact path={`${path}/signOut`}>
-                       <Login></Login>
+                        <Login></Login>
                     </Route>
                     {/* <Route path={`${path}/:topicId`}>
                         <h3>Please select a topic.</h3>

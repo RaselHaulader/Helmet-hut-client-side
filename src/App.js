@@ -6,31 +6,38 @@ import {
 } from "react-router-dom";
 import Explore from "./pages/Explore/Explore";
 import Purchase from "./pages/Purchase/Purchase";
-import DashBoard from "./pages/DashBoard/DashBoard";
+import DashBoard from "./pages/DashBoard/DashBoard/DashBoard";
+import PrivateRoute from "./privateRoute/PrivateRoute";
+import Login from "./pages/Login/Login";
+import AuthProvider from "./context/AuthProvider";
 
 function App() {
   return (
     <div >
-      <Router>
-        <Switch>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
-          <Route exact path="/home">
-            <Home></Home>
-          </Route>
-          <Route exact path="/explore">
-            <Explore></Explore>
-          </Route>
-          <Route exact path="/purchase">
-            <Purchase></Purchase>
-          </Route>
-          <Route  path="/dashboard">
-           <DashBoard></DashBoard>
-          </Route>
-        </Switch>
-      </Router>
-
+      <AuthProvider>
+        <Router>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route exact path="/home">
+              <Home></Home>
+            </Route>
+            <Route exact path="/explore">
+              <Explore></Explore>
+            </Route>
+            <PrivateRoute exact path="/purchase">
+              <Purchase></Purchase>
+            </PrivateRoute>
+            <Route path="/dashboard">
+              <DashBoard></DashBoard>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+          </Switch>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

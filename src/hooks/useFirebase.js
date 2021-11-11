@@ -3,7 +3,6 @@ import InitializeFirebase from "../firebase/firebaseInit";
 
 InitializeFirebase()
 
-
 const useFirebase = () => {
     const googleProvider = new GoogleAuthProvider();
     const auth = getAuth()

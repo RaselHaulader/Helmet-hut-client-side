@@ -37,30 +37,15 @@ const Purchase = () => {
             <Box sx={{ mb: { md: 30, xs: 5 }, background: 'linear-gradient(108deg, rgba(191,191,191,1) 0%, rgba(240,240,240,1) 49%, rgba(228,227,227,1) 100%)' }}>
                 <Navigation></Navigation>
                 <Container>
-                    <Box sx={{
-                        display: 'grid',
-                        gridTemplateColumns: { sm: 'repeat(1, 1fr)', md: "5fr 5fr" }
-                    }}>
-                        <Item sx={{
-                            pt: 5,
-                            textAlign: 'center',
-                            pb: { md: 15 }
-                        }}>
+                    <Box sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(1, 1fr)', md: "5fr 5fr" } }}>
+                        <Item sx={{ pt: 5, textAlign: 'center', pb: { md: 15 } }}>
                             <img width="70%" src='https://i.ibb.co/HhcFLTn/05-Main-Shop-Grid-View-removebg-preview.png' alt="" />
                         </Item>
                         <Item sx={{ pr: { md: 18 }, py: 0 }}>
-                            <Box sx={{
-                                bgcolor: 'white',
-                                height: '100%',
-                                width: { md: '85%' }
-                            }}>
-
+                            <Box sx={{ bgcolor: 'white', height: '100%', width: { md: '85%' } }}>
                                 <form style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} onSubmit={handleSubmit(onSubmit)}>
                                     <Box sx={{ px: 2 }}>
-                                        <Box sx={{
-                                            display: 'flex',
-                                            justifyContent: 'space-between',
-                                        }}>
+                                        <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                                             <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>crimson thunder</Typography>
                                             <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>$249</Typography>
                                         </Box>
@@ -72,12 +57,7 @@ const Purchase = () => {
                                                 Lorem ipsum, dolor sit amet consectetur adipisicing elit. Adipisci quidem alias maxime officia enim quos.
                                             </Typography>
 
-                                            <Rating
-                                                name="half-rating-read"
-                                                sx={{ mt: 1, fontSize: 14, }}
-                                                defaultValue={4.5}
-                                                precision={0.5}
-                                                readOnly />
+                                            <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                                         </Box>
                                         <Typography variant='p'>Address</Typography>
                                         <input style={inputStyle} {...register("exampleRequired", { required: true })} /> <br />

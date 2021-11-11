@@ -19,6 +19,12 @@ const Explore = () => {
                         <Product></Product>
                         <Product></Product>
                         <Product></Product>
+                        <Product></Product>
+                        <Product></Product>
+                        <Product></Product>
+                        <Product></Product>
+                        <Product></Product>
+                        <Product></Product>
                     </Box>
                 </Box>
             </Container>

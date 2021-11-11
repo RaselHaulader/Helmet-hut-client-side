@@ -15,14 +15,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
-import UserOrder from '../UsersOrder/UserOrder';
-import Payment from '../Payment/Payment';
-import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
+import UserOrder from '../../DashBoard/UsersOrder/UserOrder';
+import Payment from '../../DashBoard/Payment/Payment';
+import ManageAllOrders from '../../DashBoard/ManageAllOrders/ManageAllOrders';
 import AddReviews from '../AddReviews/AddReviews';
 import AddProduct from '../AddProduct/AddProduct';
-import MakeAdmin from '../MakeAdmin/MakeAdmin';
-import Purchase from '../Purchase/Purchase';
-import Login from '../Login/Login';
+import MakeAdmin from '../../DashBoard/MakeAdmin/MakeAdmin';
+import Login from '../../Login/Login';
+import ManageProducts from '../MangeProducts/ManageProducts';
 
 const drawerWidth = 240;
 
@@ -35,7 +35,7 @@ function DashBoard(props) {
     };
 
     const Navlink = ({ pathname, linkName }) => {
-        return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
+        return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={pathname!='/' &&{ color: 'tomato'}}>
             <ListItem button >
                 <ListItemIcon>
                     <ArrowForwardIcon />
@@ -50,12 +50,12 @@ function DashBoard(props) {
             <Divider />
             <List>
                 <Navlink pathname={`/`} linkName="Home" />
-                <Navlink pathname={`${url}/userOrder`} linkName="My Order" />
+                <Navlink pathname={`${url}/userOrder`} linkName="My Orders" />
                 <Navlink pathname={`${url}/payment`} linkName="Payment" />
                 <Navlink pathname={`${url}/Review`} linkName="Review" />
-                <Navlink pathname={`${url}/AllOrder`} linkName="Manage All Order" />
+                <Navlink pathname={`${url}/AllOrder`} linkName="Manage Orders" />
                 <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
-                <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Product" />
+                <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Products" />
                 <Navlink pathname={`${url}/MakeAdmin`} linkName="Add An Admin" />
                 <Navlink pathname={`${url}/signOut`} linkName="Sign Out" />
             </List>
@@ -148,7 +148,7 @@ function DashBoard(props) {
                         <AddProduct></AddProduct>
                     </Route>
                     <Route exact path={`${path}/ManageProduct`}>
-                        <UserOrder></UserOrder>
+                      <ManageProducts></ManageProducts>
                     </Route>
                     <Route exact path={`${path}/MakeAdmin`}>
                         <MakeAdmin></MakeAdmin>

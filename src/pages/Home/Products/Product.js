@@ -93,15 +93,7 @@ const Product = () => {
                 </Typography>
                 
                 <Box sx={{ display: 'block' }}>
-                    <Rating
-                        name="half-rating-read"
-                        sx={{
-                            mt: 1,
-                            fontSize: 14,
-                        }}
-                        defaultValue={4.5}
-                        precision={0.5}
-                        readOnly />
+                <Rating size="small" name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                 </Box>
                 <Box
                     sx={{

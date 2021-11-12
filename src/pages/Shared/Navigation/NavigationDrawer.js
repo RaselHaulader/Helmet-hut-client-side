@@ -7,8 +7,20 @@ import ToggleButton from '@mui/material/ToggleButton';
 import FormatAlignCenterIcon from '@mui/icons-material/FormatAlignCenter';
 import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 
 export default function NavigationDrawer() {
+
+
+  const { user, logOut } = useAuth()
+  const activeStyle = {
+    fontWeight: "bold",
+    color: "red"
+  }
+  const style = {
+    color: 'black',
+    textDecoration: 'none'
+  }
   const [state, setState] = React.useState({
     top: false,
     left: false,
@@ -36,14 +48,20 @@ export default function NavigationDrawer() {
         </NavLink>
         <NavLink to='/explore' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
           <ListItem button >
-            <ListItemText primary={'Explore'} />
+            <ListItemText primary={'Explore More'} />
           </ListItem>
         </NavLink>
-        <NavLink to='/dashboard' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
-          <ListItem button >
-            <ListItemText primary={'Dashboard'} />
-          </ListItem>
-        </NavLink>
+
+        {user?.displayName ? <>
+          <NavLink to='/dashboard' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
+            <ListItem button >
+              <ListItemText primary={'Dashboard'} />
+            </ListItem>
+          </NavLink><Button color="inherit">{user?.displayName}</Button> <br />
+          <Button color="inherit" onClick={logOut}>LogOut</Button></> :
+          <NavLink style={style} activeStyle={activeStyle} to='/login'>
+            <Button color="inherit" >login</Button>
+          </NavLink>}
       </List>
     </Box>
   );

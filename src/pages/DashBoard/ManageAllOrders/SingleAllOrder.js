@@ -26,7 +26,7 @@ const SingleAllOrder = (props) => {
         <Box
             sx={{
                 display: 'grid',
-                columnGap: 3,
+               
                 rowGap: 1,
                 gridTemplateColumns: { md: '2fr 3fr 5fr 2fr 2fr 2fr 2fr', sm: 'repeat(1fr, 1fr)' },
                 borderBottom: "1px solid #f4f4f4"
@@ -58,10 +58,10 @@ const SingleAllOrder = (props) => {
                 {status}
             </Item>
             <Item sx={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', display: 'flex', textAlign: { md: 'center' } }}>
-                {status === 'pending' ? <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button variant='contained' disabled={status === 'Shipped' ? false : true} sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>Delivered</Button>
+                {status === 'pending' ? <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button variant='contained' disabled={status === 'Shipped' ? false : true} sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>{status === 'Shipped' ? 'Delivered': "Completed"}</Button>
                 }
             </Item>
-            <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
+            <Item sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex', textAlign: { md: 'center' } }}>
                 <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'delete')}>Delete</Button>
             </Item>
         </Box>

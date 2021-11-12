@@ -6,13 +6,16 @@ import { useForm } from "react-hook-form";
 import Navigation from '../Shared/Navigation/Navigation';
 import { Link, useLocation, useHistory } from 'react-router-dom';
 import axios from 'axios';
+import Loader from "react-js-loader";
+
 
 
 const Login = () => {
   const location = useLocation()
   const history = useHistory()
+  const [load, setLoad] = useState(false)
   const [page, setPage] = useState('login')
-  const { googleLogIn, loginUser, setUser, auth, setLoading, error, setError, registerUser, updateProfile } = useAuth()
+  const { googleLogIn, loginUser, setUser, auth, error, setError, registerUser, updateProfile } = useAuth()
   const { register, handleSubmit, formState: { errors } } = useForm();
 
   const togglePage = () => {
@@ -23,7 +26,7 @@ const Login = () => {
   const saveUserInfo = (data) => {
     console.log(data)
     axios.post('https://powerful-mountain-89009.herokuapp.com/saveUser', data)
-      .then(res => console.log(res))
+      .then(res =>   setLoad(false))
   }
 
 
@@ -51,9 +54,9 @@ const Login = () => {
 
   const onSubmit = data => {
     // for login
+    setLoad(true)
     if (page === "login") {
       console.log(data);
-      setLoading(true)
       // email login
       loginUser(data.email, data.password)
         .then((userCredential) => {
@@ -75,9 +78,8 @@ const Login = () => {
 
       // for register
     } else if (page === 'register') {
-
+        
       if (data.password === data.confirmPassword) {
-        setLoading(true)
         // creat account
         registerUser(data.email, data.password, data.name)
           .then((userCredential) => {
@@ -93,10 +95,12 @@ const Login = () => {
               history.push(location?.state?.from?.pathname || '/')
               setError('')
             }).catch((error) => {
+              setLoad(false)
               setError(error.message)
             });
           })
           .catch((error) => {
+            setLoad(false)
             setError(error.message)
           })
       } else {
@@ -121,6 +125,7 @@ const Login = () => {
               <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
               <button onClick={handleGoogleSignIn}>Google Sign In</button>
             </Box>
+            {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             <form onSubmit={handleSubmit(onSubmit)}>
 
               {page !== 'login' && <> <TextField style={inputStyle} id="standard-basic" label="Name" variant="standard"  {...register("name", { required: true })} />

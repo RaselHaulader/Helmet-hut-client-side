@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { NavLink, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { NavLink,Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import UserOrder from '../../DashBoard/UsersOrder/UserOrder';
 import Payment from '../../DashBoard/Payment/Payment';
 import ManageAllOrders from '../../DashBoard/ManageAllOrders/ManageAllOrders';
@@ -50,17 +50,19 @@ function DashBoard(props) {
     }
     const drawer = (
         <div>
-            <Toolbar sx={{ bgcolor: 'tomato', color: 'white' }}><Typography variant="h5">{user.displayName}</Typography></Toolbar>
+            <Toolbar sx={{ bgcolor: 'tomato', color: 'white' }}><Typography variant="h5">{user.displayName} {admin && "(Admin)"}</Typography></Toolbar>
             <Divider />
             <List>
-                <Navlink pathname={`/`} linkName="Home" />
-                <Navlink pathname={`${url}/userOrder`} linkName="My Orders" />
-                <Navlink pathname={`${url}/payment`} linkName="Payment" />
-                <Navlink pathname={`${url}/Review`} linkName="Add A Review" />
+                {!admin && <>
+                    <Navlink pathname={`/`} linkName="Home" />
+                    <Navlink pathname={`${url}/userOrder`} linkName="My Orders" />
+                    <Navlink pathname={`${url}/payment`} linkName="Payment" />
+                    <Navlink pathname={`${url}/Review`} linkName="Add A Review" />
+                </>}
                 {admin && <><Navlink pathname={`${url}/AllOrder`} linkName="Manage All Orders" />
                     <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
                     <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Products" />
-                    <Navlink pathname={`${url}/MakeAdmin`} linkName="Add An Admin" /></>}
+                    <Navlink pathname={`${url}/MakeAdmin`} linkName="Make Admin" /></>}
                 <ListItem button onClick={logOut}>
                     <ListItemIcon>
                         <ArrowForwardIcon />
@@ -94,9 +96,9 @@ function DashBoard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/"><Typography variant="h6" noWrap component="div">
                         Helmet Hut
-                    </Typography>
+                    </Typography></Link>
                 </Toolbar>
             </AppBar>
             <Box

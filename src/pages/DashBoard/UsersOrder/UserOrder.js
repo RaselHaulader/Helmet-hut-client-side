@@ -17,15 +17,17 @@ const UserOrder = () => {
         const confirm = window.confirm('Are You Sure')
         if (!confirm) {
             return
+        } else {
+            axios.post('https://powerful-mountain-89009.herokuapp.com/handleCancel', { id })
+                .then(res => {
+                    if (res.data.deletedCount > 0) {
+                        const restOrder = orders.filter(order => order._id !== id)
+                        setOrders(restOrder)
+                    }
+                    console.log(res)
+                })
         }
-        axios.post('https://powerful-mountain-89009.herokuapp.com/handleCancel', { id })
-            .then(res => {
-                if (res.data.deletedCount > 0) {
-                    const restOrder = orders.filter(order => order._id !== id)
-                    setOrders(restOrder)
-                }
-                console.log(res)
-            })
+
     }
     useEffect(() => {
         setLoad(true)

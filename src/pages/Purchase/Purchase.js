@@ -32,6 +32,7 @@ const Purchase = () => {
     const { user } = useAuth()
     const formReset = useRef()
     const [load, setLoad] = useState(false)
+    const [load2, setLoad2] = useState(false)
 
     useEffect(() => {
         setLoad(true)
@@ -45,13 +46,12 @@ const Purchase = () => {
                 });
                 setLoad(false)
             })
-
-
     }, [])
 
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => {
+        setLoad2(true)
         console.log(data);
         const productWithoutId = { ...product }
         delete productWithoutId._id
@@ -61,6 +61,7 @@ const Purchase = () => {
 
                 console.log(res)
                 if (res.data.acknowledged) {
+                    setLoad2(false)
                     alert('orderPlaced')
                     formReset.current.reset()
                 }
@@ -83,7 +84,9 @@ const Purchase = () => {
                         </Item>
                         <Item sx={{ pr: { md: 18 }, py: 0 }}>
                             <Box sx={{ bgcolor: 'white', height: '100%', width: { md: '85%' } }}>
+
                                 <form ref={formReset} style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} onSubmit={handleSubmit(onSubmit)}>
+
                                     <Box sx={{ px: 2 }}>
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                                             <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>{product?.name}</Typography>
@@ -99,6 +102,7 @@ const Purchase = () => {
 
                                             <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                                         </Box>
+                                        {load2 && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
 
                                         <TextField style={inputStyle} defaultValue={user.displayName} id="standard-basic" label="Name" variant="outlined"  {...register("user", { required: true })} />
                                         {errors.user && <span>This field is required</span>}

@@ -1,21 +1,25 @@
 import { TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios';
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
+import Loader from "react-js-loader";
 
 const AddProducts = () => {
     const formRef = useRef()
+    const [load, setLoad] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
+        setLoad(true)
         data.rating = 4.5
         console.log(data);
         axios.post('https://powerful-mountain-89009.herokuapp.com/addProduct', data)
             .then(res => {
                 if (res.data.acknowledged) {
+                    setLoad(false)
                     alert('Product added')
                     formRef.current.reset()
-
+                    
                 }
                 console.log(res)
             })
@@ -36,6 +40,7 @@ const AddProducts = () => {
                         <h1>Add A Product </h1>
                         <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
                     </Box>
+                    {load && <Loader type="spinner-cub" bgColor={"tomato"} color={'#FFFFFF'} size={50} />}
                     <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
 
                         <TextField style={inputStyle} id="standard-basic" label="Product Name" variant="standard"  {...register("name", { required: true })} />

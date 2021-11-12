@@ -1,11 +1,13 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import { Button, Rating, Typography } from '@mui/material';
+import Loader from "react-js-loader";
 
 
 const SingleManageProduct = (props) => {
     const { img, title, name, _id, details, price, status, rating } = props.product
     const handleUpdateProduct = props.handleUpdateProduct
+    const load2 = props.load2
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -52,7 +54,7 @@ const SingleManageProduct = (props) => {
                 {status}
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-               <Button onClick={()=>handleUpdateProduct(_id)}>Delete</Button>
+               <Button onClick={()=>handleUpdateProduct(_id)}>{load2.load && load2.id===_id ? <Loader type="spinner-cub" bgColor={"tomato"}  size={20} />: "Delete"}</Button>
             </Item>
         </Box>
 

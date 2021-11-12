@@ -4,11 +4,13 @@ import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
-import UserOrder from '../UsersOrder/UserOrder';
 import Ratings from './Ratings';
+import Loader from "react-js-loader";
+
 
 const AddReviews = () => {
     const [rating, setValue] = React.useState(0);
+    const [load, setLoad] = useState(false)
     const { user } = useAuth()
     const inputEl  = useRef()
     const [ratingWarning, setRatingWarning] = useState('')
@@ -16,6 +18,7 @@ const AddReviews = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const onSubmit = data => {
         if (rating > 0) {
+            setLoad(true)
             setRatingWarning('')
             const reviewerImg = {}
             user.photoURL ? reviewerImg.img = user.photoURL : reviewerImg.img = 'https://i.ibb.co/TbH5Zfw/user-circle-icon-152504.png'
@@ -24,10 +27,10 @@ const AddReviews = () => {
             axios.post('https://powerful-mountain-89009.herokuapp.com/addReview', { ...data, rating, ...reviewerImg })
                 .then(res => {
                     reset()
+                    setLoad(false)
                     alert('thank for your valuable review')
                     console.log(res)
                     inputEl.current.reset()
-                   
                 })
         } else if (rating === 0) {
             setRatingWarning('Rating please')
@@ -50,6 +53,7 @@ const AddReviews = () => {
                         <h1>WRITE A REVIEW  </h1>
                         <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
                     </Box>
+                    {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
                     <form ref={inputEl} onSubmit={handleSubmit(onSubmit)}>
                         <Typography variant="p">Your Name</Typography>
                         <input style={inputStyle} defaultValue={user.displayName} {...register("name")} />

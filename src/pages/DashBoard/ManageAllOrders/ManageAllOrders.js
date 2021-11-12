@@ -3,16 +3,22 @@ import SingleAllOrder from './SingleAllOrder';
 import axios from 'axios';
 import { Typography } from '@mui/material';
 import { Box } from '@mui/system';
+import Loader from "react-js-loader";
 
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
+    const [load, setLoad] = useState(false)
     const [pending, setPending] = useState(0);
     const [delivered, setDelivered] = useState(0);
     const [shipped, setShipped] = useState(0);
 
     useEffect(() => {
+        setLoad(true)
         axios.get('https://powerful-mountain-89009.herokuapp.com/allOrders')
-            .then(res => setOrders(res.data))
+            .then(res => {
+                setLoad(false)
+                setOrders(res.data)
+            })
     }, [])
     //count status
     useEffect(() => {
@@ -26,6 +32,13 @@ const ManageAllOrders = () => {
 
     // handle action
     const handleUpdateOrder = (id, status) => {
+        if (status === 'delete') {
+            const confirm = window.confirm('Are You Sure')
+            if (!confirm) {
+                return
+            }
+        }
+
         axios.post('https://powerful-mountain-89009.herokuapp.com/handleUpdateOrder', { id, status })
             .then(res => {
                 // update status
@@ -46,9 +59,11 @@ const ManageAllOrders = () => {
             })
     }
 
+
     return (
         <div>
             <Box><Typography variant='h6' sx={{ textAlign: 'center' }}>Total Order: {orders.length} Pending:{pending} shipped: {shipped} Delivered:{delivered}</Typography></Box>
+            {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             {
                 orders.map(order => <SingleAllOrder handleUpdateOrder={handleUpdateOrder} order={order}></SingleAllOrder>)
             }

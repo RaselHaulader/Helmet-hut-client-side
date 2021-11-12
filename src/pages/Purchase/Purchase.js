@@ -4,9 +4,10 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Navigation from '../Shared/Navigation/Navigation';
 import Footer from '../Shared/Footer/Footer';
-import { useHistory, useParams } from 'react-router';
+import { useParams } from 'react-router';
 import axios from 'axios'
 import useAuth from '../../hooks/useAuth';
+import Loader from "react-js-loader";
 
 
 function Item(props) {
@@ -29,15 +30,23 @@ const Purchase = () => {
     const [product, setProduct] = useState([])
     const { id } = useParams();
     const { user } = useAuth()
-    const history = useHistory()
     const formReset = useRef()
-
+    const [load, setLoad] = useState(false)
 
     useEffect(() => {
-
+        setLoad(true)
         axios.get(`https://powerful-mountain-89009.herokuapp.com/selectedItem/${id}`)
-            .then(res => setProduct(res.data))
-        window.scroll(0, 0)
+            .then(res => {
+                setProduct(res.data)
+                window.scrollTo({
+                    top: 0,
+                    left: 0,
+                    behavior: 'smooth'
+                });
+                setLoad(false)
+            })
+
+
     }, [])
 
     const { register, handleSubmit, formState: { errors } } = useForm();
@@ -69,6 +78,7 @@ const Purchase = () => {
                 <Container>
                     <Box sx={{ display: 'grid', gridTemplateColumns: { sm: 'repeat(1, 1fr)', md: "5fr 5fr" } }}>
                         <Item sx={{ pt: 5, textAlign: 'center', pb: { md: 15 } }}>
+                            {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
                             <img width="70%" src={product?.img} alt="" />
                         </Item>
                         <Item sx={{ pr: { md: 18 }, py: 0 }}>

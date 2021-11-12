@@ -58,7 +58,7 @@ const SingleAllOrder = (props) => {
                 {status}
             </Item>
             <Item sx={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', display: 'flex', textAlign: { md: 'center' } }}>
-                {status === 'pending' ? <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button variant='contained' disabled={status === 'Shipped' ? false : true} sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>{status === 'Shipped' ? 'Delivered': "Completed"}</Button>
+                {status === 'pending' ? <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button variant='contained' disabled={status === 'Shipped' ? false : true} sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>Delivered</Button>
                 }
             </Item>
             <Item sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex', textAlign: { md: 'center' } }}>

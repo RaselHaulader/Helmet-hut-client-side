@@ -28,7 +28,7 @@ const Navigation = () => {
                     <AppBar position="static" sx={{ boxShadow: 0, bgcolor: 'transparent', color: 'black' }}>
                         <Toolbar>
                             <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                              HELMET HUT
+                                HELMET HUT
                             </Typography>
                             <Box sx={{ display: { md: 'block', sm: 'none', xs: 'none' } }}>
                                 <NavLink style={style} activeStyle={activeStyle} to='/home'><Button color="inherit">Home</Button></NavLink>

@@ -37,33 +37,33 @@ const ManageAllOrders = () => {
             if (!confirm) {
                 return
             }
-        } else {
-            axios.post('https://powerful-mountain-89009.herokuapp.com/handleUpdateOrder', { id, status })
-                .then(res => {
-                    // update status
-                    if (res.data.deletedCount > 0) {
-                        const restItems = orders.filter(order => order._id !== id)
-                        setOrders(restItems)
-                    } else if (res.data.modifiedCount > 0) {
-                        // delete order
-                        const actionItem = orders.filter(order => order._id === id)
-                        const allOrders = [...orders];
-                        const updateOrderIndex = allOrders.indexOf(actionItem)
-                        actionItem[0].status = status;
-                        allOrders[updateOrderIndex] = actionItem;
-                        console.log(allOrders);
-                        setOrders(allOrders)
-                    }
-                    console.log(res)
-                })
         }
-
+        axios.post('https://powerful-mountain-89009.herokuapp.com/handleUpdateOrder', { id, status })
+            .then(res => {
+                // update status
+                if (res.data.deletedCount > 0) {
+                    const restItems = orders.filter(order => order._id !== id)
+                    setOrders(restItems)
+                } else if (res.data.modifiedCount > 0) {
+                    // delete order
+                    const actionItem = orders.filter(order => order._id === id)
+                    const allOrders = [...orders];
+                    const updateOrderIndex = allOrders.indexOf(actionItem)
+                    actionItem[0].status = status;
+                    allOrders[updateOrderIndex] = actionItem;
+                    console.log(allOrders);
+                    setOrders(allOrders)
+                }
+                console.log(res)
+            })
     }
+
+
 
 
     return (
         <div>
-            <Box><Typography variant='h6' sx={{ textAlign: 'center' }}>Total Order: {orders.length} Pending:{pending} shipped: {shipped} Completed:{delivered}</Typography></Box>
+            <Box><Typography variant='h6' sx={{ textAlign: 'center' }}>Total Order: {orders.length} Pending:{pending} shipped: {shipped} Delivered:{delivered}</Typography></Box>
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             {
                 orders.map(order => <SingleAllOrder handleUpdateOrder={handleUpdateOrder} order={order}></SingleAllOrder>)

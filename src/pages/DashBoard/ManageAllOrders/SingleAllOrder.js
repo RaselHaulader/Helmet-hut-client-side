@@ -4,7 +4,7 @@ import { Rating, Typography } from '@mui/material';
 
 
 const SingleAllOrder = (props) => {
-    const { img, title, name,email,description,address, price, status,user } = props.order
+    const { img, title, name,email,description,address,phone, price, status,user } = props.order
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -45,6 +45,7 @@ const SingleAllOrder = (props) => {
                 <Box >
                     <Typography variant="h6">{user}</Typography>
                     <Typography variant='p'>{email}</Typography> <br />
+                    <Typography variant='p'>{phone}</Typography> <br />
                     <Typography variant='p'>{address}</Typography> <br />
                     <Typography variant="caption">{description}</Typography> <br />
                 </Box>

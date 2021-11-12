@@ -17,7 +17,7 @@ const useStyles = makeStyles({
 });
 
 const Product = (props) => {
-    const {name,title,img,price,details,rating,_id} = props.product
+    const { name, title, img, price, details, rating, _id } = props.product
     const classes = useStyles();
     function Item(props) {
         const { sx, ...other } = props;
@@ -45,7 +45,7 @@ const Product = (props) => {
                     py: 7,
                     bgcolor: '#f4f4f4'
                 }}>
-                    <img width="60%" src={img} alt="" />
+                    <img width="180px" height="180px" src={img} alt="" />
 
                 </Box>
             </Box>
@@ -54,15 +54,6 @@ const Product = (props) => {
                     variant='p'
                     sx={{ fontSize: 12 }}>
                     {title}
-                </Typography>
-                <Typography variant='h3'
-                    sx={{
-                        mt: 1,
-                        textTransform: 'uppercase',
-                        fontSize: 16,
-                        fontWeight: 'bold'
-                    }}>
-                   ${price}
                 </Typography>
                 <Typography
                     variant='h3'
@@ -74,6 +65,16 @@ const Product = (props) => {
                     }}>
                     {name}
                 </Typography>
+                
+                <Typography variant='h3'
+                    sx={{
+                        mt: 1,
+                        textTransform: 'uppercase',
+                        fontSize: 16,
+                        fontWeight: 'bold'
+                    }}>
+                    ${price}
+                </Typography>
                 <Typography
                     variant='p'
                     sx={{
@@ -82,10 +83,10 @@ const Product = (props) => {
                         fontWeight: 'bold',
                         color: 'gray'
                     }}>
-                   {details.slice(0,80)}
+                    {details.slice(0, 80)}
                 </Typography>
                 <Box sx={{ display: 'block' }}>
-                <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+                    <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                 </Box>
                 <Box
                     sx={{
@@ -93,7 +94,7 @@ const Product = (props) => {
                         mt: 1
                     }}>
                     <Box sx={{ width: '40%', textAlign: 'center' }}>
-                        <Link to={`/purchase/${_id}`} style={{textDecoration:'none', color:'black'}}>
+                        <Link to={`/purchase/${_id}`} style={{ textDecoration: 'none', color: 'black' }}>
                             <Box
                                 className={classes.btn}
                             >

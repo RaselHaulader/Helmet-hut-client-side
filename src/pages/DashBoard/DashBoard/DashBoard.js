@@ -25,11 +25,12 @@ import Login from '../../Login/Login';
 import ManageProducts from '../MangeProducts/ManageProducts';
 import { Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
+import AdminRoute from '../../../privateRoute/AdminRoute';
 
 const drawerWidth = 240;
 
 function DashBoard(props) {
-    const { logOut } = useAuth()
+    const { logOut, admin, user } = useAuth()
     let { path, url } = useRouteMatch();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -49,17 +50,17 @@ function DashBoard(props) {
     }
     const drawer = (
         <div>
-            <Toolbar sx={{ bgcolor: 'tomato', color: 'white' }}><Typography variant="h5">User Name</Typography></Toolbar>
+            <Toolbar sx={{ bgcolor: 'tomato', color: 'white' }}><Typography variant="h5">{user.displayName}</Typography></Toolbar>
             <Divider />
             <List>
                 <Navlink pathname={`/`} linkName="Home" />
                 <Navlink pathname={`${url}/userOrder`} linkName="My Orders" />
                 <Navlink pathname={`${url}/payment`} linkName="Payment" />
-                <Navlink pathname={`${url}/Review`} linkName="Review" />
-                <Navlink pathname={`${url}/AllOrder`} linkName="Manage Orders" />
-                <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
-                <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Products" />
-                <Navlink pathname={`${url}/MakeAdmin`} linkName="Add An Admin" />
+                <Navlink pathname={`${url}/Review`} linkName="Add A Review" />
+                {admin && <><Navlink pathname={`${url}/AllOrder`} linkName="Manage All Orders" />
+                    <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
+                    <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Products" />
+                    <Navlink pathname={`${url}/MakeAdmin`} linkName="Add An Admin" /></>}
                 <ListItem button onClick={logOut}>
                     <ListItemIcon>
                         <ArrowForwardIcon />
@@ -147,21 +148,21 @@ function DashBoard(props) {
                     <Route exact path={`${path}/payment`}>
                         <Payment></Payment>
                     </Route>
-                    <Route exact path={`${path}/AllOrder`}>
-                        <ManageAllOrders></ManageAllOrders>
-                    </Route>
                     <Route exact path={`${path}/Review`}>
                         <AddReviews></AddReviews>
                     </Route>
-                    <Route exact path={`${path}/AddProduct`}>
+                    <AdminRoute exact path={`${path}/AllOrder`}>
+                        <ManageAllOrders></ManageAllOrders>
+                    </AdminRoute>
+                    <AdminRoute exact path={`${path}/AddProduct`}>
                         <AddProduct></AddProduct>
-                    </Route>
-                    <Route exact path={`${path}/ManageProduct`}>
+                    </AdminRoute>
+                    <AdminRoute exact path={`${path}/ManageProduct`}>
                         <ManageProducts></ManageProducts>
-                    </Route>
-                    <Route exact path={`${path}/MakeAdmin`}>
+                    </AdminRoute>
+                    <AdminRoute exact path={`${path}/MakeAdmin`}>
                         <MakeAdmin></MakeAdmin>
-                    </Route>
+                    </AdminRoute>
                     <Route exact path={`${path}/signOut`}>
                         <Login></Login>
                     </Route>

@@ -44,10 +44,10 @@ const Purchase = () => {
 
     const onSubmit = data => {
         console.log(data);
-        const productWithoutId = {...product}
+        const productWithoutId = { ...product }
         delete productWithoutId._id
         console.log(productWithoutId)
-        axios.post('http://localhost:5000/placeOrder', {...data, ...productWithoutId})
+        axios.post('http://localhost:5000/placeOrder', { ...data, ...productWithoutId })
             .then(res => {
 
                 console.log(res)
@@ -90,15 +90,18 @@ const Purchase = () => {
                                             <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                                         </Box>
 
-                                        <TextField style={inputStyle} defaultValue={user.displayName} id="standard-basic" label="Name" variant="outlined"  {...register("user")} />
+                                        <TextField style={inputStyle} defaultValue={user.displayName} id="standard-basic" label="Name" variant="outlined"  {...register("user", { required: true })} />
+                                        {errors.user && <span>This field is required</span>}
 
-                                        <TextField style={inputStyle} defaultValue={user.email} id="standard-basic" label="Email" variant="outlined"  {...register("email")} />
+                                        <TextField style={inputStyle} defaultValue={user.email} id="standard-basic" label="Email" variant="outlined"  {...register("email", { required: true })} />
+                                        {errors.email && <span>This field is required</span>}
+
+                                        <TextField type='tel' style={inputStyle} id="standard-basic" variant="outlined" label="Phone Number" {...register("phone", { required: true })} />
+                                        {errors.phone && <span>This field is required</span>}
 
                                         <TextField id="standard-basic" variant="outlined" label="Address" style={inputStyle}  {...register("address", { required: true })} />
                                         {errors.address && <span>This field is required</span>}
 
-                                        <TextField type='date' style={inputStyle} id="standard-basic" variant="outlined"  {...register("date", { required: true })} />
-                                        {errors.date && <span>This field is required</span>}
 
                                         <TextField multiline label="Description" style={inputStyle} id="standard-basic" variant="outlined"  {...register("description", { required: true })} />
                                         {errors.description && <span>This field is required</span>}

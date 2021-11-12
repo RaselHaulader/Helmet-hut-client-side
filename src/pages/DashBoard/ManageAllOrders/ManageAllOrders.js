@@ -13,7 +13,6 @@ const ManageAllOrders = () => {
     
     return (
         <div>
-            <h1>manage orders</h1>
             {
                 orders.map(order => <SingleAllOrder order={order}></SingleAllOrder>)
             }

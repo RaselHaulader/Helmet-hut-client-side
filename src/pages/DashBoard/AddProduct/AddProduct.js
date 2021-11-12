@@ -1,16 +1,28 @@
-import { Typography } from '@mui/material';
+import { TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
-import React from 'react';
+import axios from 'axios';
+import React, { useRef } from 'react';
 import { useForm } from "react-hook-form";
 
 const AddProducts = () => {
- 
-    const { register, handleSubmit, watch, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
+    const formRef = useRef()
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
+        data.rating = 4.5
+        console.log(data);
+        axios.post('http://localhost:5000/addProduct', data)
+            .then(res => {
+                if (res.data.acknowledged) {
+                    alert('Product added')
+                    formRef.current.reset()
+
+                }
+                console.log(res)
+            })
+    }
 
     const inputStyle = {
         width: '100%',
-        border: '1px solid rgb(207, 207, 207)',
         padding: '7px 0',
         margin: '5px 0'
     }
@@ -24,31 +36,29 @@ const AddProducts = () => {
                         <h1>Add A Product </h1>
                         <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
                     </Box>
-                    <form onSubmit={handleSubmit(onSubmit)}>
-                        <Typography variant="h6">Products Name</Typography>
-                        <input style={inputStyle} defaultValue="test" {...register("example")} />
-                        {errors.exampleRequired && <span>This field is required</span>}
-                        
-                        <Typography variant="h6">Price</Typography>
-                        <input style={inputStyle} defaultValue="test" {...register("example")} />
-                        {errors.exampleRequired && <span>This field is required</span>}
-                       
-                        <Typography variant="h6">Title</Typography>
-                        <input style={inputStyle} defaultValue="test" {...register("example")} />
-                        {errors.exampleRequired && <span>This field is required</span>}
-                       
-                        <Typography variant="h6">Description</Typography>
-                        <textarea style={inputStyle} defaultValue="test" {...register("example")} />
-                        {errors.exampleRequired && <span>This field is required</span>}
+                    <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
 
-                        <Typography variant="h6">Image Url</Typography>
-                        <input style={inputStyle} defaultValue="test" {...register("example")} />
-                        {errors.exampleRequired && <span>This field is required</span>}
+                        <TextField style={inputStyle} id="standard-basic" label="Product Name" variant="standard"  {...register("name", { required: true })} />
+                        {errors.name && <span>This field is required</span>}
+
+                        <TextField style={inputStyle} id="standard-basic" label="Title" variant="standard"  {...register("title", { required: true })} />
+                        {errors.title && <span>This field is required</span>}
+
+                        <TextField id="standard-basic" inputProps={{ inputMode: 'numeric' }} variant="standard" label="Price" style={inputStyle}  {...register("price", { required: true })} />
+                        {errors.price && <span>This field is required</span>}
+
+                        <TextField style={inputStyle} id="standard-basic" label="Details" variant="standard"  {...register("details", { required: true })} />
+                        {errors.details && <span>This field is required</span>}
+
+                        <TextField style={inputStyle} id="standard-basic" label="Img URL" variant="standard"  {...register("img", { required: true })} />
+                        {errors.img && <span>This field is required</span>}
+
                         <input type="submit" />
+
                     </form>
                 </Box>
             </Box>
-        </Box>
+        </Box >
     );
 };
 export default AddProducts;

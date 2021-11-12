@@ -10,6 +10,7 @@ import DashBoard from "./pages/DashBoard/DashBoard/DashBoard";
 import PrivateRoute from "./privateRoute/PrivateRoute";
 import Login from "./pages/Login/Login";
 import AuthProvider from "./context/AuthProvider";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
@@ -34,6 +35,9 @@ function App() {
             </PrivateRoute>
             <Route path="/login">
               <Login></Login>
+            </Route>
+            <Route path="*">
+             <NotFound></NotFound>
             </Route>
           </Switch>
         </Router>

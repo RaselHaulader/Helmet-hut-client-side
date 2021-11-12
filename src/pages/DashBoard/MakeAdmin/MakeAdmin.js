@@ -9,7 +9,7 @@ const MakeAdmin = () => {
     const onSubmit = data =>{
         
         console.log(data)
-        axios.post('http://localhost:5000/makeAdmin',data)
+        axios.post('https://powerful-mountain-89009.herokuapp.com/makeAdmin',data)
         .then(res=>{
             if (res.data.acknowledged) {
                 alert(data.email + 'now an admin')

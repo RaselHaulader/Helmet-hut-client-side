@@ -35,7 +35,7 @@ const Purchase = () => {
 
     useEffect(() => {
 
-        axios.get(`http://localhost:5000/selectedItem/${id}`)
+        axios.get(`https://powerful-mountain-89009.herokuapp.com/selectedItem/${id}`)
             .then(res => setProduct(res.data))
         window.scroll(0, 0)
     }, [])
@@ -47,7 +47,7 @@ const Purchase = () => {
         const productWithoutId = { ...product }
         delete productWithoutId._id
         console.log(productWithoutId)
-        axios.post('http://localhost:5000/placeOrder', { ...data, ...productWithoutId })
+        axios.post('https://powerful-mountain-89009.herokuapp.com/placeOrder', { ...data, ...productWithoutId })
             .then(res => {
 
                 console.log(res)

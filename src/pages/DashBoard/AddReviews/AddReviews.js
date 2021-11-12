@@ -21,7 +21,7 @@ const AddReviews = () => {
             user.photoURL ? reviewerImg.img = user.photoURL : reviewerImg.img = 'https://i.ibb.co/TbH5Zfw/user-circle-icon-152504.png'
             console.log({ ...data, rating, ...reviewerImg })
           
-            axios.post('http://localhost:5000/addReview', { ...data, rating, ...reviewerImg })
+            axios.post('https://powerful-mountain-89009.herokuapp.com/addReview', { ...data, rating, ...reviewerImg })
                 .then(res => {
                     reset()
                     alert('thank for your valuable review')

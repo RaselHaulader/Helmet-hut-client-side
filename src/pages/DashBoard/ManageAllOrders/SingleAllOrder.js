@@ -4,7 +4,7 @@ import { Button, Rating, Typography } from '@mui/material';
 
 
 const SingleAllOrder = (props) => {
-    const { img, title, name,_id, email, description, address, phone, price, status, user } = props.order
+    const { img, title, name, _id, email, description, address, phone, price, status, user } = props.order
     const handleUpdateOrder = props.handleUpdateOrder
     function Item(props) {
         const { sx, ...other } = props;
@@ -57,12 +57,12 @@ const SingleAllOrder = (props) => {
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
                 {status}
             </Item>
-            <Item sx={{ alignItems: 'center',justifyContent:'center', flexDirection:'column', display: 'flex', textAlign: { md: 'center' } }}>
-                <Button variant='contained' sx={{width:'100%'}} onClick={()=>handleUpdateOrder(_id,'Shipped')}>Shipped</Button>
-                <Button variant='contained' sx={{width:'100%'}} onClick={()=>handleUpdateOrder(_id,'Delivered')}>Delivered</Button>
+            <Item sx={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', display: 'flex', textAlign: { md: 'center' } }}>
+                {status === 'pending' ? <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button variant='contained' disabled={status === 'Shipped' ? false : true} sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>Delivered</Button>
+                }
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-            <Button variant='contained' sx={{width:'100%'}} onClick={()=>handleUpdateOrder(_id,'delete')}>Delete</Button>
+                <Button variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'delete')}>Delete</Button>
             </Item>
         </Box>
 

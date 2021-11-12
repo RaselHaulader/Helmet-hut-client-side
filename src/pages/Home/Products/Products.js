@@ -11,7 +11,7 @@ const Products = () => {
     const {isLoading, setLoading} = useAuth()
         useEffect(() => {
             setLoading(true)
-            axios.get('http://localhost:5000/allProducts')
+            axios.get('https://powerful-mountain-89009.herokuapp.com/allProducts')
                 .then(res => {
                     setProducts(res.data)
                     setLoading(false)

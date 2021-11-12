@@ -68,7 +68,7 @@ const useFirebase = () => {
 
   useEffect(() => {
     if (user?.email) {
-      axios.get(`http://localhost:5000/checkAdminRole/${user.email}`)
+      axios.get(`https://powerful-mountain-89009.herokuapp.com/checkAdminRole/${user.email}`)
         .then(res => {
           console.log(res.data.admin)
           setAdmin(res.data.admin)

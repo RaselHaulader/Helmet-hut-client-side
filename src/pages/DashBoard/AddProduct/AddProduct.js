@@ -10,7 +10,7 @@ const AddProducts = () => {
     const onSubmit = data => {
         data.rating = 4.5
         console.log(data);
-        axios.post('http://localhost:5000/addProduct', data)
+        axios.post('https://powerful-mountain-89009.herokuapp.com/addProduct', data)
             .then(res => {
                 if (res.data.acknowledged) {
                     alert('Product added')

@@ -22,7 +22,7 @@ const Login = () => {
 
   const saveUserInfo = (data) => {
     console.log(data)
-    axios.post('http://localhost:5000/saveUser', data)
+    axios.post('https://powerful-mountain-89009.herokuapp.com/saveUser', data)
       .then(res => console.log(res))
   }
 

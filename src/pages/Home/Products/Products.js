@@ -8,20 +8,20 @@ import useAuth from '../../../hooks/useAuth';
 
 const Products = () => {
     const [products, setProducts] = useState([])
-    const [loader, setLoader] = useState(true)
-
-    useEffect(() => {
-        axios.get('http://localhost:5000/allProducts')
-            .then(res => {
-                setProducts(res.data)
-                setLoader(false)
-            })
-    }, [])
+    const {isLoading, setLoading} = useAuth()
+        useEffect(() => {
+            setLoading(true)
+            axios.get('http://localhost:5000/allProducts')
+                .then(res => {
+                    setProducts(res.data)
+                    setLoading(false)
+                })
+        }, [])
     return (
         <Container>
             <Box sx={{ pt: 10, px: { sm: '0px', md: '20px', lg: "50px" } }}>
                 <Typography variant="h4" sx={{ textAlign: 'center' }}>Choose one for yoy</Typography>
-                {loader && <Box sx={{ mt: 15, textAlign: 'center' }}><Loader type="box-rectangular" bgColor={"tomato"} title={"bubble-loop"} color={'#FFFFFF'} size={100} /></Box>}
+                {isLoading && <Box sx={{ mt: 15, textAlign: 'center' }}><Loader type="box-rectangular" bgColor={"tomato"} title={"bubble-loop"} color={'#FFFFFF'} size={100} /></Box>}
                 <Box sx={{ display: 'grid', gridTemplateColumns: { md: 'repeat(3, 1fr)', sm: 'repeat(1, 1fr)' } }}>
 
                     {

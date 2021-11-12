@@ -11,6 +11,7 @@ const useFirebase = () => {
   const googleProvider = new GoogleAuthProvider();
   const auth = getAuth()
   const [isLoading, setLoading] = useState(true)
+  const [adminLoad, setAdminLoad] = useState(true)
   const [error, setError] = useState('')
 
 
@@ -71,6 +72,7 @@ const useFirebase = () => {
         .then(res => {
           console.log(res.data.admin)
           setAdmin(res.data.admin)
+          setAdminLoad(false)
         })
     }
   }, [user?.email])
@@ -89,7 +91,8 @@ const useFirebase = () => {
     error,
     setError,
     setLoading,
-    admin
+    admin,
+    adminLoad,
   }
 };
 

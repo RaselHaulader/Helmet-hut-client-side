@@ -6,15 +6,17 @@ import Footer from '../Shared/Footer/Footer';
 import Navigation from '../Shared/Navigation/Navigation';
 import axios from 'axios'
 import Loader from "react-js-loader";
+import useAuth from '../../hooks/useAuth';
 
 const Explore = () => {
-    const [loader, setLoader] = useState(true)
+    const {isLoading, setLoading} = useAuth()
     const [products, setProducts] = useState([])
     useEffect(() => {
+        setLoading(true)
         axios.get('http://localhost:5000/allProducts')
             .then(res => {
                 setProducts(res.data)
-                setLoader(false)
+                setLoading(false)
             })
     }, [])
 
@@ -24,7 +26,7 @@ const Explore = () => {
             <Container>
                 <Box sx={{ pt: 10, px: { sm: '0px', md: '20px', lg: "50px" } }}>
                     <Typography variant="h4" sx={{ textAlign: 'center' }}>Browse All Products</Typography>
-                    {loader && <Box sx={{ my: 15, textAlign: 'center' }}><Loader type="box-rectangular" bgColor={"tomato"} title={"bubble-loop"} color={'#FFFFFF'} size={100} /></Box>}
+                    {isLoading && <Box sx={{ my: 15, textAlign: 'center' }}><Loader type="box-rectangular" bgColor={"tomato"} title={"bubble-loop"} color={'#FFFFFF'} size={100} /></Box>}
 
                     <Box sx={{ display: 'grid', gridTemplateColumns: { md: 'repeat(4, 1fr)', sm: 'repeat(1, 1fr)' } }}>
                         {

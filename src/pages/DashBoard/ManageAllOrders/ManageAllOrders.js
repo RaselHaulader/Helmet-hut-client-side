@@ -9,12 +9,17 @@ const ManageAllOrders = () => {
        axios.get('http://localhost:5000/allOrders')
        .then(res=>setOrders(res.data))
    },[])
+   
 
+   const handleUpdateOrder =(id,status)=>{
+       axios.post('http://localhost:5000/handleUpdateOrder', {id, status})
+       .then(res=>console.log(res))
+   }
     
     return (
         <div>
             {
-                orders.map(order => <SingleAllOrder order={order}></SingleAllOrder>)
+                orders.map(order => <SingleAllOrder handleUpdateOrder={handleUpdateOrder} order={order}></SingleAllOrder>)
             }
         </div>
     );

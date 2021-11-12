@@ -10,7 +10,11 @@ const MakeAdmin = () => {
         
         console.log(data)
         axios.post('http://localhost:5000/makeAdmin',data)
-        .then(res=>console.log(res))
+        .then(res=>{
+            if (res.data.acknowledged) {
+                alert(data.email + 'now an admin')
+            }
+            console.log(res)})
     }
 
     const inputStyle = {

@@ -1,11 +1,11 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import { Rating, Typography } from '@mui/material';
+import { Button, Rating, Typography } from '@mui/material';
 
 
 const SingleManageProduct = (props) => {
-    const { img, title, name, details, price, status, rating } = props.product
-
+    const { img, title, name, _id, details, price, status, rating } = props.product
+    const handleUpdateProduct = props.handleUpdateProduct
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -52,7 +52,7 @@ const SingleManageProduct = (props) => {
                 {status}
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                Delete
+               <Button onClick={()=>handleUpdateProduct(_id)}>Delete</Button>
             </Item>
         </Box>
 

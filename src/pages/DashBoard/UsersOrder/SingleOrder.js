@@ -1,10 +1,11 @@
 import { Box } from '@mui/system';
 import React from 'react';
-import { Rating, Typography } from '@mui/material';
+import { Button, Rating, Typography } from '@mui/material';
+import axios from 'axios';
 
 
 const SingleOrder = (props) => {
-    const {img,title,name,details,price,status,rating} = props.order
+    const {img,title,name,details,price,status,rating,_id,} = props.order
     
     function Item(props) {
         const { sx, ...other } = props;
@@ -22,6 +23,8 @@ const SingleOrder = (props) => {
             />
         );
     }
+
+    
     return (
         <Box
             sx={{
@@ -52,7 +55,7 @@ const SingleOrder = (props) => {
               {status}
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                Delete
+              <Button onClick={()=>props.handleCancel(_id)}>Cancel</Button>
             </Item>
         </Box>
 

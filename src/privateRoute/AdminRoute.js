@@ -5,9 +5,9 @@ import Loader from "react-js-loader";
 import { Box } from '@mui/system';
 
 const AdminRoute = ({ children, ...rest }) => {
-    const {user, isLoading, admin} = useAuth()
+    const {user,admin,adminLoad} = useAuth()
 
-    if (isLoading) {
+    if (adminLoad) {
         return<Box sx={{mt:15}}><Loader type="bubble-loop" bgColor={"tomato"} title={"bubble-loop"} color={'#FFFFFF'} size={100} /></Box>
     }
     return (

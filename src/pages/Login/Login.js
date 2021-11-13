@@ -52,7 +52,7 @@ const Login = () => {
 
   const onSubmit = data => {
     // for login
-   
+
     if (page === "login") {
       // email login
       setLoad(true)
@@ -165,15 +165,57 @@ const Login = () => {
                   Create An<Box sx={{ color: 'tomato', display: 'inline' }}> Account</Box>
                 </Typography>
 
-                  <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
-                  <Typography variant='h6' sx={{ px: 5, py: 3, textAlign: 'center', fontSize: '13px', color: 'gray' }}>Create an New Account to connect with us</Typography></>}
+                  <Box
+                    sx={{
+                      display: 'flex',
+                      justifyContent: 'center'
+                    }}>
+                    <Box
+                      sx={{
+                        width: '40px',
+                        height: '2px',
+                        bgcolor: 'tomato'
+                      }}>
+                    </Box>
+                  </Box>
+                  <Typography
+                    variant='h6'
+                    sx={{
+                      px: 5,
+                      py: 3,
+                      textAlign: 'center',
+                      fontSize: '13px',
+                      color: 'gray'
+                    }}>
+                    Create an New Account to connect with us</Typography></>}
             </Box>
-            <Box sx={{ mx: 'auto', borderRadius: '5px', cursor: 'pointer', p: 0, display: 'flex', boxShadow: '5px 5px 22px -9px gray', alignItems: 'center', justifyContent: 'center', width: { md: '30%', sm: '50%', xs: '50%' } }} onClick={handleGoogleSignIn}><img width="25px" height='25px' src="https://i.ibb.co/1bPdy1h/4f41a8607ccbba1bf6abea90eaffdcea.jpg" alt="" />  <Typography variant="caption"> Google Sign In </Typography></Box>
+            <Box
+              sx={{
+                mx: 'auto',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                p: 0,
+                display: 'flex',
+                boxShadow: '5px 5px 22px -9px gray',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: { md: '30%', sm: '50%', xs: '50%' }
+              }}
+              onClick={handleGoogleSignIn}>
+              <img width="25px" height='25px' src="https://i.ibb.co/1bPdy1h/4f41a8607ccbba1bf6abea90eaffdcea.jpg" alt="" />
+              <Typography variant="caption"> Google Sign In </Typography></Box>
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             <form onSubmit={handleSubmit(onSubmit)}>
 
-              {page !== 'login' && <> <TextField style={inputStyle} id="standard-basic" label="Name" variant="standard"  {...register("name", { required: true })} />
-                {errors.name && <span>This field is required</span>} </>}
+              {page !== 'login' &&
+                <>
+                  <TextField
+                    style={inputStyle}
+                    id="standard-basic"
+                    label="Name"
+                    variant="standard"
+                    {...register("name", { required: true })} />
+                  {errors.name && <span>This field is required</span>} </>}
 
               <TextField
                 style={inputStyle}

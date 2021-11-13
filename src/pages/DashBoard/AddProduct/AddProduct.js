@@ -109,7 +109,17 @@ const AddProducts = () => {
                             {...register("img", { required: true })} />
                         {errors.img && <span>This field is required</span>}
 
-                        <input style={{ color: 'white', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Add Product" />
+                        <input
+                            style={{
+                                color: 'white',
+                                width: '100%',
+                                border: 'none',
+                                padding: '10px 15px',
+                                background: 'tomato',
+                                cursor: 'pointer'
+                            }}
+                            type="submit"
+                            value="Add Product" />
 
                     </form>
                 </Box>

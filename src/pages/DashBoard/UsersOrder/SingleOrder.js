@@ -5,8 +5,8 @@ import axios from 'axios';
 
 
 const SingleOrder = (props) => {
-    const {img,title,name,details,price,status,rating,_id,} = props.order
-    
+    const { img, title, name, details, price, status, rating, _id, } = props.order
+
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -24,7 +24,7 @@ const SingleOrder = (props) => {
         );
     }
 
-    
+
     return (
         <Box
             sx={{
@@ -40,22 +40,60 @@ const SingleOrder = (props) => {
             </Item>
             <Item >
                 <Box >
-                    <Typography sx={{fontWeight:'bold', color:'gray'}} variant="h6">{name}</Typography>
-                    <Typography sx={{color:'gray'}} variant="caption">{title}</Typography> <br />
-                    <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+                    <Typography
+                        sx={{ fontWeight: 'bold', color: 'gray' }}
+                        variant="h6">
+                        {name}
+                    </Typography>
+                    <Typography
+                        sx={{ color: 'gray' }}
+                        variant="caption">
+                        {title}
+                    </Typography> <br />
+                    <Rating
+                        size="small"
+                        name="half-rating-read"
+                        defaultValue={rating}
+                        precision={0.5}
+                        readOnly />
                 </Box>
             </Item>
             <Item>
-                <Typography sx={{color:'gray'}} paragraph>{details}</Typography>
+                <Typography
+                    sx={{ color: 'gray' }}
+                    paragraph>
+                    {details}
+                </Typography>
             </Item>
-            <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
+            <Item
+                sx={{
+                    alignItems: 'center',
+                    display: 'flex',
+                    textAlign: { md: 'center' }
+                }}>
                 ${price}
             </Item>
-            <Item sx={{color:'dodgerBlue', alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-              {status}
+            <Item
+                sx={{
+                    color: 'dodgerBlue',
+                    alignItems: 'center',
+                    display: 'flex',
+                    textAlign: { md: 'center' }
+                }}>
+                {status}
             </Item>
-            <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-              <Button sx={{ bgcolor:'#fd3b3b4f'}} color='error' onClick={()=>props.handleCancel(_id)}>Cancel</Button>
+            <Item
+                sx={{
+                    alignItems: 'center',
+                    display: 'flex',
+                    textAlign: { md: 'center' }
+                }}>
+                <Button
+                    sx={{ bgcolor: '#fd3b3b4f' }}
+                    color='error'
+                    onClick={() => props.handleCancel(_id)}>
+                    Cancel
+                </Button>
             </Item>
         </Box>
 

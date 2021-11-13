@@ -64,12 +64,30 @@ const MakeAdmin = () => {
                             textAlign: 'center'
                         }}>
                         For add an admin give email and then submit. provided email users will be the admin.</Typography>
-                    {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
+                    {load && 
+                    <Loader 
+                    type="spinner-cub" 
+                    bgColor={"tomato"} 
+                    size={50} />}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Typography variant="h6">Email</Typography>
-                        <input placeholder="Email" style={inputStyle}  {...register("email", { required: true })} />
-                        {errors.email && <span>This field is required</span>} <br />
-                        <input style={{ color: 'white', fontSize: '16px', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Make Admin" />
+                        <input 
+                        placeholder="Email" 
+                        style={inputStyle}  
+                        {...register("email", { required: true })} />
+                        {errors.email && 
+                        <span>This field is required</span>} <br />
+                        <input 
+                        style={{ 
+                            color: 'white', 
+                            fontSize: '16px', 
+                            width: '100%', 
+                            border: 'none', 
+                            padding: '10px 15px', 
+                            background: 'tomato', 
+                            cursor: 'pointer' }} 
+                            type="submit" 
+                            value="Make Admin" />
                     </form>
                 </Box>
             </Box>

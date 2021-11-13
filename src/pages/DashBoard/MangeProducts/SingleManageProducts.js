@@ -30,7 +30,7 @@ const SingleManageProduct = (props) => {
                 display: 'grid',
                 columnGap: 3,
                 rowGap: 1,
-                gridTemplateColumns: { md: '2fr 3fr 5fr 2fr 2fr 2fr', sm: 'repeat(1fr, 1fr)',xs: 'repeat(1fr, 1fr)' },
+                gridTemplateColumns: { md: '2fr 3fr 5fr 2fr 2fr 2fr', sm: 'repeat(1fr, 1fr)', xs: 'repeat(1fr, 1fr)' },
                 borderBottom: "1px solid #f4f4f4"
             }}
         >
@@ -41,20 +41,44 @@ const SingleManageProduct = (props) => {
                 <Box >
                     <Typography variant="h6">{name}</Typography>
                     <Typography variant="caption">{title}</Typography> <br />
-                    <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
+                    <Rating
+                        size="small"
+                        name="half-rating-read"
+                        defaultValue={rating}
+                        precision={0.5}
+                        readOnly />
                 </Box>
             </Item>
             <Item>
-                <Typography sx={{color:'gray', fontSize:'12px'}} paragraph>{details}</Typography>
+                <Typography sx={{ color: 'gray', fontSize: '12px' }} paragraph>{details}</Typography>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-             <Box sx={{color:'tomato'}}> ${price}</Box>
+                <Box sx={{ color: 'tomato' }}> ${price}</Box>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                <Button size="small" sx={{bgcolor:'#3b68fd4f'}} >Edit</Button>
+                <Button size="small" sx={{ bgcolor: '#3b68fd4f' }} >Edit</Button>
             </Item>
-            <Item sx={{ alignItems: 'center',justifyContent:{md:'center'}, display: 'flex', textAlign: { md: 'center' } }}>
-            {load2.load && load2.id===_id ? <Box ><Loader type="spinner-cub" bgColor={"tomato"}  size={20} /></Box>: <Button size="small" sx={{bgcolor:'#fd3b3b4f'}} color="error" onClick={()=>handleUpdateProduct(_id)}>Delete</Button>}
+            <Item
+                sx={{
+                    alignItems: 'center',
+                    justifyContent: { md: 'center' },
+                    display: 'flex',
+                    textAlign: { md: 'center' }
+                }}>
+                {load2.load && load2.id === _id ?
+                    <Box >
+                        <Loader
+                            type="spinner-cub"
+                            bgColor={"tomato"}
+                            size={20} />
+                    </Box> :
+                    <Button
+                        size="small"
+                        sx={{ bgcolor: '#fd3b3b4f' }}
+                        color="error"
+                        onClick={() => handleUpdateProduct(_id)}>
+                        Delete
+                    </Button>}
             </Item>
         </Box>
 

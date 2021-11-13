@@ -14,7 +14,7 @@ import ListItemText from '@mui/material/ListItemText';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import { NavLink,Link, useRouteMatch, Switch, Route } from 'react-router-dom';
+import { NavLink, Link, useRouteMatch, Switch, Route } from 'react-router-dom';
 import UserOrder from '../../DashBoard/UsersOrder/UserOrder';
 import Payment from '../../DashBoard/Payment/Payment';
 import ManageAllOrders from '../../DashBoard/ManageAllOrders/ManageAllOrders';
@@ -38,8 +38,8 @@ function DashBoard(props) {
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-    
-    const handleLogOut =()=>{
+
+    const handleLogOut = () => {
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to access this!",
@@ -48,17 +48,17 @@ function DashBoard(props) {
             confirmButtonColor: '#3085d6',
             cancelButtonColor: '#d33',
             confirmButtonText: 'Yes, Sign Out!'
-          }).then((result) => {
+        }).then((result) => {
             if (result.isConfirmed) {
                 logOut()
-              Swal.fire(
-                'Sign Out!',
-                'Successfully SignOut.',
-                'success'
-              )
+                Swal.fire(
+                    'Sign Out!',
+                    'Successfully SignOut.',
+                    'success'
+                )
             }
-          })
-       
+        })
+
     }
     const Navlink = ({ pathname, linkName }) => {
         return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={pathname != '/' && { color: 'tomato' }}>
@@ -164,16 +164,17 @@ function DashBoard(props) {
                 <Toolbar />
                 <Switch>
                     <Route exact path={path}>
-                       {!admin ?  <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
+                        {!admin ? <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
                     </Route>
                     <Route exact path={`${path}/userOrder`}>
-                    {!admin ?  <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
+                        {!admin ? <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
                     </Route>
                     <Route exact path={`${path}/payment`}>
-                      {!admin ? <Payment></Payment> : <ManageAllOrders></ManageAllOrders>} 
+                        {!admin ? <Payment></Payment> : <ManageAllOrders></ManageAllOrders>}
                     </Route>
                     <Route exact path={`${path}/Review`}>
-                        <AddReviews></AddReviews>
+                        {!admin ? <AddReviews></AddReviews> : <ManageAllOrders></ManageAllOrders>}
+
                     </Route>
                     <AdminRoute exact path={`${path}/AllOrder`}>
                         <ManageAllOrders></ManageAllOrders>

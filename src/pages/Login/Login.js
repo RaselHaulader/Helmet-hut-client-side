@@ -52,9 +52,10 @@ const Login = () => {
 
   const onSubmit = data => {
     // for login
-    setLoad(true)
+   
     if (page === "login") {
       // email login
+      setLoad(true)
       loginUser(data.email, data.password)
         .then((userCredential) => {
           const user = userCredential.user;
@@ -77,6 +78,7 @@ const Login = () => {
     } else if (page === 'register') {
 
       if (data.password === data.confirmPassword) {
+        setLoad(true)
         // creat account
         registerUser(data.email, data.password, data.name)
           .then((userCredential) => {

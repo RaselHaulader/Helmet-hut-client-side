@@ -1,7 +1,7 @@
 import { Button, Container, Typography } from '@mui/material';
 import { Box, height } from '@mui/system';
 import React from 'react';
-import banner from '../../../images/banner.jpg'
+import banner from '../../../images/banner.png'
 import banner2 from '../../../images/banner2.png'
 import banner3 from '../../../images/banner3.png'
 import banner4 from '../../../images/banner4.jpg'

@@ -4,20 +4,25 @@ import { Box } from '@mui/system';
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import Loader from "react-js-loader";
+import Swal from 'sweetalert2'
 
 const MakeAdmin = () => {
     const [load, setLoad] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => {
         setLoad(true)
-        console.log(data)
         axios.post('https://powerful-mountain-89009.herokuapp.com/makeAdmin', data)
             .then(res => {
                 if (res.data.acknowledged) {
                     setLoad(false)
-                    alert(data.email + 'now an admin')
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'A new admin has been added',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                 }
-                console.log(res)
             })
     }
 

@@ -26,6 +26,7 @@ import ManageProducts from '../MangeProducts/ManageProducts';
 import { Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 import AdminRoute from '../../../privateRoute/AdminRoute';
+import Swal from 'sweetalert2'
 
 const drawerWidth = 240;
 
@@ -37,7 +38,28 @@ function DashBoard(props) {
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
-
+    
+    const handleLogOut =()=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to access this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Sign Out!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+              Swal.fire(
+                'Sign Out!',
+                'Successfully SignOut.',
+                'success'
+              )
+            }
+          })
+       
+    }
     const Navlink = ({ pathname, linkName }) => {
         return <NavLink to={pathname} style={{ textDecoration: 'none', color: 'black' }} activeStyle={pathname != '/' && { color: 'tomato' }}>
             <ListItem button >
@@ -63,7 +85,7 @@ function DashBoard(props) {
                     <Navlink pathname={`${url}/AddProduct`} linkName="Add Product" />
                     <Navlink pathname={`${url}/ManageProduct`} linkName="Manage Products" />
                     <Navlink pathname={`${url}/MakeAdmin`} linkName="Make Admin" /></>}
-                <ListItem button onClick={logOut}>
+                <ListItem button onClick={handleLogOut}>
                     <ListItemIcon>
                         <ArrowForwardIcon />
                     </ListItemIcon>

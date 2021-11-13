@@ -4,6 +4,7 @@ import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import { useForm } from "react-hook-form";
 import Loader from "react-js-loader";
+import Swal from 'sweetalert2'
 
 const AddProducts = () => {
     const formRef = useRef()
@@ -16,7 +17,13 @@ const AddProducts = () => {
             .then(res => {
                 if (res.data.acknowledged) {
                     setLoad(false)
-                    alert('Product added')
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Product Added SuccessFully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     formRef.current.reset()
                 }
             })

@@ -33,12 +33,14 @@ const ManageAllOrders = () => {
 
     // handle action
     const handleUpdateOrder = (id, status) => {
+        
         if (status === 'delete') {
             const confirm = window.confirm('Are You Sure')
             if (!confirm) {
                 return
             }
         }
+
         if (status !== 'delete') {
             setLoad2({ load: true, id })
         }
@@ -69,7 +71,7 @@ const ManageAllOrders = () => {
     return (
         <div>
             <Box sx={{ boxShadow: 1 }}>
-                <Typography variant='h6' sx={{fontWeight:'bolder', color:'gray',py:3, textAlign: 'center', display: 'flex', flexDirection:{sm:'column', xs:'column', md:'row'}, justifyContent: 'space-evenly' }}>
+                <Typography variant='h6' sx={{ fontWeight: 'bolder', color: 'gray', py: 3, textAlign: 'center', display: 'flex', flexDirection: { sm: 'column', xs: 'column', md: 'row' }, justifyContent: 'space-evenly' }}>
                     <Box> Total Order: {orders.length}</Box>
                     <Box > Pending:{pending}</Box>
                     <Box > Shipped: {shipped}</Box>

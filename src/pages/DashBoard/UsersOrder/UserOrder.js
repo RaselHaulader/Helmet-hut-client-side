@@ -5,6 +5,7 @@ import useAuth from '../../../hooks/useAuth'
 import { Box } from '@mui/system';
 import { Divider, Typography } from '@mui/material';
 import Loader from "react-js-loader";
+import Swal from 'sweetalert2';
 
 
 
@@ -14,19 +15,32 @@ const UserOrder = () => {
     const { user } = useAuth()
 
     const handleCancel = id => {
-        const confirm = window.confirm('Are You Sure')
-        if (!confirm) {
-            return
-        } else {
-            axios.post('https://powerful-mountain-89009.herokuapp.com/handleCancel', { id })
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Cancel it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                axios.post('https://powerful-mountain-89009.herokuapp.com/handleCancel', { id })
                 .then(res => {
                     if (res.data.deletedCount > 0) {
                         const restOrder = orders.filter(order => order._id !== id)
                         setOrders(restOrder)
                     }
-                    console.log(res)
                 })
-        }
+              Swal.fire(
+                'Canceled!',
+                'Your Order has been Canceled.',
+                'success'
+              )
+            }else{
+                return
+            }
+          })
 
     }
     useEffect(() => {
@@ -34,7 +48,6 @@ const UserOrder = () => {
         axios.get(`https://powerful-mountain-89009.herokuapp.com/userOrder/${user.email}`)
             .then(res => {
                 setOrders(res.data)
-                console.log(res.data)
                 setLoad(false)
             })
     }, [])

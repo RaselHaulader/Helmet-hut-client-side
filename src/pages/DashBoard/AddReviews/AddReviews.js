@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import useAuth from '../../../hooks/useAuth';
 import Ratings from './Ratings';
 import Loader from "react-js-loader";
+import Swal from 'sweetalert2'
 
 
 const AddReviews = () => {
@@ -22,14 +23,17 @@ const AddReviews = () => {
             setRatingWarning('')
             const reviewerImg = {}
             user.photoURL ? reviewerImg.img = user.photoURL : reviewerImg.img = 'https://i.ibb.co/TbH5Zfw/user-circle-icon-152504.png'
-            console.log({ ...data, rating, ...reviewerImg })
-
             axios.post('https://powerful-mountain-89009.herokuapp.com/addReview', { ...data, rating, ...reviewerImg })
                 .then(res => {
                     reset()
                     setLoad(false)
-                    alert('thank for your valuable review')
-                    console.log(res)
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Thanks For Your Valuable Review',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     inputEl.current.reset()
                 })
         } else if (rating === 0) {
@@ -43,7 +47,6 @@ const AddReviews = () => {
         padding: '7px 2px',
         margin: '5px 0'
     }
-    console.log("example");
     return (
         <Box>
 

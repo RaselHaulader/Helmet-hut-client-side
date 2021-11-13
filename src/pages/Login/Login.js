@@ -24,7 +24,6 @@ const Login = () => {
   }
 
   const saveUserInfo = (data) => {
-    console.log(data)
     axios.post('https://powerful-mountain-89009.herokuapp.com/saveUser', data)
       .then(res => setLoad(false))
   }
@@ -45,7 +44,6 @@ const Login = () => {
         //redirect
         history.push(uri)
         setError('')
-        console.log(user)
       }).catch((error) => {
         const errorMessage = error.message;
         setError(errorMessage)
@@ -56,7 +54,6 @@ const Login = () => {
     // for login
     setLoad(true)
     if (page === "login") {
-      console.log(data);
       // email login
       loginUser(data.email, data.password)
         .then((userCredential) => {

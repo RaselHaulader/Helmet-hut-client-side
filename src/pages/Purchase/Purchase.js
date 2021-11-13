@@ -8,6 +8,7 @@ import { useParams } from 'react-router';
 import axios from 'axios'
 import useAuth from '../../hooks/useAuth';
 import Loader from "react-js-loader";
+import Swal from 'sweetalert2'
 
 
 function Item(props) {
@@ -52,17 +53,20 @@ const Purchase = () => {
 
     const onSubmit = data => {
         setLoad2(true)
-        console.log(data);
         const productWithoutId = { ...product }
         delete productWithoutId._id
-        console.log(productWithoutId)
         axios.post('https://powerful-mountain-89009.herokuapp.com/placeOrder', { ...data, ...productWithoutId })
             .then(res => {
-
-                console.log(res)
+               
                 if (res.data.acknowledged) {
                     setLoad2(false)
-                    alert('orderPlaced')
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'order Placed Successfully',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
                     formReset.current.reset()
                 }
             })

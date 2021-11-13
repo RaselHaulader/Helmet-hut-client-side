@@ -10,6 +10,7 @@ import { Container } from '@mui/material';
 import NavigationDrawer from './NavigationDrawer';
 import { Link, NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
+import Swal from 'sweetalert2'
 
 const Navigation = () => {
     const { user, logOut, admin } = useAuth()
@@ -21,6 +22,29 @@ const Navigation = () => {
         color: 'black',
         textDecoration: 'none',
         fontWeight:'bold'
+    }
+
+
+    const handleLogOut =()=>{
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to access this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, Sign Out!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                logOut()
+              Swal.fire(
+                'Sign Out!',
+                'Successfully SignOut.',
+                'success'
+              )
+            }
+          })
+       
     }
     return (
         <Box sx={{ bgcolor: 'white' }}>
@@ -41,7 +65,7 @@ const Navigation = () => {
                                         <Button  sx={{fontWeight:'bold'}} color="inherit" >DashBoard</Button>
                                     </NavLink>
                                     <Button sx={{fontWeight:'bold'}}  color="inherit">{user?.displayName}</Button>
-                                    <Button  sx={{fontWeight:'bold'}} color="inherit" onClick={logOut}>LogOut</Button></> :
+                                    <Button  sx={{fontWeight:'bold'}} color="inherit" onClick={handleLogOut}>LogOut</Button></> :
                                     <NavLink style={style} activeStyle={activeStyle} to='/login'>
                                         <Button  sx={{fontWeight:'bold'}} color="inherit" >login</Button>
                                     </NavLink>}

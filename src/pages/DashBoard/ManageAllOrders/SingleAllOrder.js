@@ -61,11 +61,11 @@ const SingleAllOrder = (props) => {
               <Box sx={{color:'dodgerblue'}}>  {load2.load && load2.id===_id ? <Loader type="spinner-cub" bgColor={"tomato"}  size={20} />: status}</Box>
             </Item>
             <Item sx={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', display: 'flex', textAlign: { md: 'center' } }}>
-                {status === 'pending' ? <Button  size="small" variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button  size="small" variant='contained' disabled={status === 'Shipped' ? false : true} sx={{ width: '100%', bgcolor:'MediumAquaMarine' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>Delivered</Button>
+                {status === 'pending' ? <Button  size="small" sx={{ width: '100%', bgcolor:'#3b68fd4f' }} onClick={() => handleUpdateOrder(_id, 'Shipped')}>Shipped</Button> : <Button color="success" variant="contained" size="small"  disabled={status === 'Shipped' ? false : true} sx={{ width: '100%', bgcolor:'MediumAquaMarine' }} onClick={() => handleUpdateOrder(_id, 'Delivered')}>Delivered</Button>
                 }
             </Item>
             <Item sx={{ alignItems: 'center', justifyContent: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                <Button  size="small" color='error' variant='contained' sx={{ width: '100%' }} onClick={() => handleUpdateOrder(_id, 'delete')}>Delete</Button>
+                <Button  size="small" color='error' sx={{ width: '100%', bgcolor:'#fd3b3b4f' }} onClick={() => handleUpdateOrder(_id, 'delete')}>Delete</Button>
             </Item>
         </Box>
 

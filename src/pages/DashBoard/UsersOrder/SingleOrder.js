@@ -55,7 +55,7 @@ const SingleOrder = (props) => {
               {status}
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-              <Button variant="contained" color='error' onClick={()=>props.handleCancel(_id)}>Cancel</Button>
+              <Button sx={{ bgcolor:'#fd3b3b4f'}} color='error' onClick={()=>props.handleCancel(_id)}>Cancel</Button>
             </Item>
         </Box>
 

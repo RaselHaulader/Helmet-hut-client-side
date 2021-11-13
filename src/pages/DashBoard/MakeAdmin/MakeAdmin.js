@@ -30,16 +30,41 @@ const MakeAdmin = () => {
     return (
         <div>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                <Box style={{ boxShadow: '5px 5px 22px -7px gray', borderRadius: '10px' }} sx={{ p: 2, width: { md: '50%', xs: '100%' } }}>
-                <Typography variant="h4" sx={{mt:3,textAlign: 'center', textTransform:'uppercase', fontWeight:'bold' }}>Make An<Box sx={{color:'tomato', display:'inline'}}> Admin</Box></Typography>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
-                    <Typography variant='h6' sx={{ px: 5, py: 3, fontSize: '13px', color: 'gray', textAlign:'center' }}>For add an admin give email and then submit. provided email users will be the admin.</Typography>
+                <Box
+                    style={{
+                        boxShadow: '5px 5px 22px -7px gray',
+                        borderRadius: '10px'
+                    }}
+                    sx={{
+                        p: 2,
+                        width: { md: '50%', xs: '100%' }
+                    }}>
+                    <Typography
+                        variant="h4"
+                        sx={{
+                            mt: 3,
+                            textAlign: 'center',
+                            textTransform: 'uppercase',
+                            fontWeight: 'bold'
+                        }}>
+                        Make An<Box sx={{ color: 'tomato', display: 'inline' }}> Admin</Box></Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}><Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
+                    <Typography
+                        variant='h6'
+                        sx={{
+                            px: 5,
+                            py: 3,
+                            fontSize: '13px',
+                            color: 'gray',
+                            textAlign: 'center'
+                        }}>
+                        For add an admin give email and then submit. provided email users will be the admin.</Typography>
                     {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Typography variant="h6">Email</Typography>
                         <input placeholder="Email" style={inputStyle}  {...register("email", { required: true })} />
                         {errors.email && <span>This field is required</span>} <br />
-                        <input style={{color:'white',fontSize:'16px', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor:'pointer' }} type="submit" value="Make Admin" />
+                        <input style={{ color: 'white', fontSize: '16px', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Make Admin" />
                     </form>
                 </Box>
             </Box>

@@ -30,12 +30,12 @@ const SingleManageProduct = (props) => {
                 display: 'grid',
                 columnGap: 3,
                 rowGap: 1,
-                gridTemplateColumns: { md: '2fr 3fr 5fr 2fr 2fr 2fr', sm: 'repeat(1fr, 1fr)' },
+                gridTemplateColumns: { md: '2fr 3fr 5fr 2fr 2fr 2fr', sm: 'repeat(1fr, 1fr)',xs: 'repeat(1fr, 1fr)' },
                 borderBottom: "1px solid #f4f4f4"
             }}
         >
             <Item >
-                <Box sx={{ bgcolor: '#f4f4f4', p: 1 }}> <img width="100%" src={img} alt="" /></Box>
+                <Box sx={{ bgcolor: '#f4f4f4', p: 1 }}><img width="100%" src={img} alt="" /></Box>
             </Item>
             <Item >
                 <Box >
@@ -51,10 +51,10 @@ const SingleManageProduct = (props) => {
              <Box sx={{color:'tomato'}}> ${price}</Box>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                <Button size="small" variant="contained" >Edit</Button>
+                <Button size="small" sx={{bgcolor:'#3b68fd4f'}} >Edit</Button>
             </Item>
-            <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-               <Button size="small" sx={{bgcolor:'crimson'}} variant="contained" onClick={()=>handleUpdateProduct(_id)}>{load2.load && load2.id===_id ? <Loader type="spinner-cub" bgColor={"tomato"}  size={20} />: "Delete"}</Button>
+            <Item sx={{ alignItems: 'center',justifyContent:{md:'center'}, display: 'flex', textAlign: { md: 'center' } }}>
+            {load2.load && load2.id===_id ? <Box ><Loader type="spinner-cub" bgColor={"tomato"}  size={20} /></Box>: <Button size="small" sx={{bgcolor:'#fd3b3b4f'}} color="error" onClick={()=>handleUpdateProduct(_id)}>Delete</Button>}
             </Item>
         </Box>
 

@@ -17,7 +17,7 @@ const Reviews = () => {
                 <Box sx={{ textAlign: 'center', color: 'orange' }}><span>Users opinions</span></Box>
                 <Box container sx={{ p: 4,pt:6, display: 'grid', gridTemplateColumns: { xm: 'repeat(1, 1fr)', md: 'repeat(3, 1fr)', lg: 'repeat(3, 1fr)' } }}>
                     {
-                        reviews.map(review => <Review review={review}></Review>)
+                        reviews.map(review => <Review key={review._id} review={review}></Review>)
                     }
                 </Box>
             </Box>

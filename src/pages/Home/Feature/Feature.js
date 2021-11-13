@@ -44,37 +44,41 @@ const Feature = () => {
                         >
                             <Item>
                                 <Box sx={{display:'flex'}}>
-                                    <Box sx={{color:'tomato', mr:2}}><i class="fas fa-check"></i></Box>
+                                    <Box sx={{color:'tomato', mr:2}}><i className="fas fa-check"></i></Box>
                                     <Box >
                                         <Typography variant="h6" >Ultra durability</Typography>
-                                        <Typography variant="caption" sx={{color:'gray'}}>lorem jfvf everv evervf evev everv erv erfv erfvefr vefr v erv  gth revg 4etvrbvre tbetb eb tbrtbgr</Typography>
+                                        <Typography variant="caption" sx={{color:'gray'}}>Front anti-fog, anti-scratch and broad visual field clear visor
+Heavily cushioned and very comfortable interior
+Aerodynamic design for exceptional stability</Typography>
                                     </Box>
                                 </Box>
                             </Item>
                             <Item>
                                 <Box sx={{display:'flex'}}>
-                                    <Box sx={{color:'tomato', mr:2}}><i class="fas fa-check"></i></Box>
+                                    <Box sx={{color:'tomato', mr:2}}><i className="fas fa-check"></i></Box>
                                     <Box >
                                         <Typography variant="h6" >Water Resistance</Typography>
-                                        <Typography variant="caption" sx={{color:'gray'}}>lorem jfvf everv evervf evev everv erv erfv erfvefr vefr v erv  gth revg 4etvrbvre tbetb eb tbrtbgr</Typography>
+                                        <Typography variant="caption" sx={{color:'gray'}}>Construction is lightweight without reducing durability
+ISI approved helmet
+Normally helmet will feel little tight at first,</Typography>
                                     </Box>
                                 </Box>
                             </Item>
                             <Item>
                                 <Box sx={{display:'flex'}}>
-                                    <Box sx={{color:'tomato', mr:2}}><i class="fas fa-check"></i></Box>
+                                    <Box sx={{color:'tomato', mr:2}}><i className="fas fa-check"></i></Box>
                                     <Box >
                                         <Typography variant="h6" >Scratch Proof </Typography>
-                                        <Typography variant="caption" sx={{color:'gray'}}>lorem jfvf everv evervf evev everv erv erfv erfvefr vefr v erv  gth revg 4etvrbvre tbetb eb tbrtbgr</Typography>
+                                        <Typography variant="caption" sx={{color:'gray'}}>Normally helmet will feel little tight at first, this meets safety requirements. The inner foam takes about 7-10 days to shape according to rider's head size</Typography>
                                     </Box>
                                 </Box>
                             </Item>
                             <Item>
                                 <Box sx={{display:'flex'}}>
-                                    <Box sx={{color:'tomato', mr:2}}><i class="fas fa-check"></i></Box>
+                                    <Box sx={{color:'tomato', mr:2}}><i className="fas fa-check"></i></Box>
                                     <Box >
                                         <Typography variant="h6" >Reliability</Typography>
-                                        <Typography variant="caption" sx={{color:'gray'}}>lorem jfvf everv evervf evev everv erv erfv erfvefr vefr v erv  gth revg 4etvrbvre tbetb eb tbrtbgr</Typography>
+                                        <Typography variant="caption" sx={{color:'gray'}}>An ideal fit for riders who look for the classic MLG signature style and ease of an open face helmet with a face long visor.</Typography>
                                     </Box>
                                 </Box>
                             </Item>

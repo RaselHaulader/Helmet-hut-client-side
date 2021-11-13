@@ -168,9 +168,6 @@ function DashBoard(props) {
                     <Route exact path={`${path}/signOut`}>
                         <Login></Login>
                     </Route>
-                    {/* <Route path={`${path}/:topicId`}>
-                        <h3>Please select a topic.</h3>
-                    </Route> */}
                 </Switch>
             </Box>
         </Box>

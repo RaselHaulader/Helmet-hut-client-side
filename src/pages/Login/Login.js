@@ -69,7 +69,7 @@ const Login = () => {
           }
           saveUserInfo(userInfo)
           // redirect to location
-          history.push(location?.state?.from?.pathname || '/')
+          history.push(location?.state?.from?.pathname || '/dashboard')
           setError('')
         })
         .catch((error) => {
@@ -92,7 +92,7 @@ const Login = () => {
               //save user to db
               saveUserInfo({ name: data.name, email: data.email })
               // redirect to location
-              history.push(location?.state?.from?.pathname || '/')
+              history.push(location?.state?.from?.pathname || '/dashboard')
               setError('')
             }).catch((error) => {
               setLoad(false)
@@ -116,10 +116,10 @@ const Login = () => {
   return (
     <div>
       <Navigation></Navigation>
-      <Divider/>
+      <Divider />
 
       <Box>
-        <Box sx={{ pt:2, display: 'flex', justifyContent: 'center' }}>
+        <Box sx={{ pt: 2, display: 'flex', justifyContent: 'center' }}>
           <Box
             style={{
               boxShadow: '5px 5px 22px -7px gray',
@@ -168,26 +168,48 @@ const Login = () => {
 
                   <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
                   <Typography variant='h6' sx={{ px: 5, py: 3, textAlign: 'center', fontSize: '13px', color: 'gray' }}>Create an New Account to connect with us</Typography></>}
-
-             
             </Box>
-          <Box sx={{mx:'auto',borderRadius:'5px', cursor:'pointer', p:0, display:'flex',boxShadow:'5px 5px 22px -9px gray',  alignItems:'center', justifyContent:'center', width:{md:'30%', sm:'50%', xs:'50%'}}} onClick={handleGoogleSignIn}><img width="25px" height='25px' src="https://i.ibb.co/1bPdy1h/4f41a8607ccbba1bf6abea90eaffdcea.jpg" alt="" />  <Typography variant="caption"> Google Sign In </Typography></Box>
+            <Box sx={{ mx: 'auto', borderRadius: '5px', cursor: 'pointer', p: 0, display: 'flex', boxShadow: '5px 5px 22px -9px gray', alignItems: 'center', justifyContent: 'center', width: { md: '30%', sm: '50%', xs: '50%' } }} onClick={handleGoogleSignIn}><img width="25px" height='25px' src="https://i.ibb.co/1bPdy1h/4f41a8607ccbba1bf6abea90eaffdcea.jpg" alt="" />  <Typography variant="caption"> Google Sign In </Typography></Box>
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             <form onSubmit={handleSubmit(onSubmit)}>
 
               {page !== 'login' && <> <TextField style={inputStyle} id="standard-basic" label="Name" variant="standard"  {...register("name", { required: true })} />
                 {errors.name && <span>This field is required</span>} </>}
 
-              <TextField style={inputStyle} id="standard-basic" label="Email" variant="standard"  {...register("email", { required: true })} />
+              <TextField
+                style={inputStyle}
+                id="standard-basic"
+                label="Email"
+                variant="standard"
+                {...register("email", { required: true })} />
               {errors.email && <span>This field is required</span>}
 
-              <TextField id="standard-basic" variant="standard" label="Password" style={inputStyle}  {...register("password", { required: true })} />
+              <TextField
+                id="standard-basic"
+                variant="standard"
+                label="Password"
+                style={inputStyle}
+                {...register("password", { required: true })} />
               {errors.password && <span>This field is required</span>}
 
-              {page !== 'login' && <> <TextField style={inputStyle} id="standard-basic" label="Confirm Password" variant="standard"  {...register("confirmPassword", { required: true })} />
+              {page !== 'login' && <> <TextField
+                style={inputStyle}
+                id="standard-basic"
+                label="Confirm Password"
+                variant="standard"
+                {...register("confirmPassword", { required: true })} />
                 {errors.confirmPassword && <span>This field is required</span>} </>}
 
-              <input style={{ color: 'white', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" /> {page === "login" ? <Button onClick={togglePage} >Create Account</Button> : <Button onClick={togglePage} >Already have an account?</Button>}
+              <input
+                style={{
+                  color: 'white',
+                  width: '100%',
+                  border: 'none',
+                  padding: '10px 15px',
+                  background: 'tomato',
+                  cursor: 'pointer'
+                }}
+                type="submit" /> {page === "login" ? <Button onClick={togglePage} >Create Account</Button> : <Button onClick={togglePage} >Already have an account?</Button>}
               <Typography paragraph>{error}</Typography>
             </form>
           </Box>

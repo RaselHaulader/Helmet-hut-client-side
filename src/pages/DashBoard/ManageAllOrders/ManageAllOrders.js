@@ -69,7 +69,7 @@ const ManageAllOrders = () => {
     return (
         <div>
             <Box sx={{ boxShadow: 1 }}>
-                <Typography variant='h6' sx={{fontWeight:'bolder', color:'gray',py:3, textAlign: 'center', display: 'flex', justifyContent: 'space-evenly' }}>
+                <Typography variant='h6' sx={{fontWeight:'bolder', color:'gray',py:3, textAlign: 'center', display: 'flex', flexDirection:{sm:'column', xs:'column', md:'row'}, justifyContent: 'space-evenly' }}>
                     <Box> Total Order: {orders.length}</Box>
                     <Box > Pending:{pending}</Box>
                     <Box > Shipped: {shipped}</Box>
@@ -79,7 +79,7 @@ const ManageAllOrders = () => {
             </Box>
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             {
-                orders.map(order => <SingleAllOrder load2={load2} handleUpdateOrder={handleUpdateOrder} order={order}></SingleAllOrder>)
+                orders.map(order => <SingleAllOrder key={order._id} load2={load2} handleUpdateOrder={handleUpdateOrder} order={order}></SingleAllOrder>)
             }
         </div>
     );

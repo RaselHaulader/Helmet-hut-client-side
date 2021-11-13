@@ -48,7 +48,7 @@ const Product = (props) => {
                     bgcolor: '#f4f4f4'
                 }}>
                     <img width="180px" height="180px" src={img} alt="" />
-
+                   
                 </Box>
             </Box>
             <Box sx={{ pt: 2, textAlign: 'left' }}>

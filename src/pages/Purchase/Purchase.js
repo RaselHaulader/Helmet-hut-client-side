@@ -85,39 +85,93 @@ const Purchase = () => {
                         <Item sx={{ pr: { md: 18 }, py: 0 }}>
                             <Box sx={{ bgcolor: 'white', height: '100%', width: { md: '85%' } }}>
 
-                                <form ref={formReset} style={{ height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }} onSubmit={handleSubmit(onSubmit)}>
+                                <form
+                                    ref={formReset}
+                                    style={{
+                                        height: '100%',
+                                        display: 'flex',
+                                        flexDirection: 'column',
+                                        justifyContent: 'space-between'
+                                    }}
+                                    onSubmit={handleSubmit(onSubmit)}>
 
                                     <Box sx={{ px: 2 }}>
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
-                                            <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>{product?.name}</Typography>
-                                            <Typography variant='h6' sx={{ pt: 2, color: 'coral', textTransform: 'uppercase', fontWeight: 'bold' }}>${product?.price}</Typography>
+                                            <Typography
+                                                variant='h6'
+                                                sx={{
+                                                    pt: 2,
+                                                    textTransform: 'uppercase',
+                                                    fontWeight: 'bold'
+                                                }}>{product?.name}</Typography>
+                                            <Typography
+                                                variant='h6'
+                                                sx={{
+                                                    pt: 2,
+                                                    color: 'coral',
+                                                    textTransform: 'uppercase',
+                                                    fontWeight: 'bold'
+                                                }}>${product?.price}</Typography>
                                         </Box>
                                         <Box>
-                                            <Typography variant="caption" sx={{ display: 'block', color: 'lightSkyBlue' }}>
+                                            <Typography
+                                                variant="caption"
+                                                sx={{ display: 'block', color: 'lightSkyBlue' }}>
                                                 {product?.title}
                                             </Typography>
-                                            <Typography variant="caption" sx={{ color: 'gray', display: 'block' }}>
+                                            <Typography
+                                                variant="caption"
+                                                sx={{ color: 'gray', display: 'block' }}>
                                                 {product?.details}
                                             </Typography>
 
-                                            <Box sx={{display:'flex', my:1}}><Typography variant='h6' sx={{fontSize:'16px' ,color:'gray'}}>Rating:</Typography> <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly /></Box>
+                                            <Box sx={{ display: 'flex', my: 1 }}><Typography variant='h6' sx={{ fontSize: '16px', color: 'gray' }}>Rating:</Typography> <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly /></Box>
                                         </Box>
                                         {load2 && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
 
-                                        <TextField style={inputStyle} defaultValue={user.displayName} id="standard-basic" label="Name" variant="outlined"  {...register("user", { required: true })} />
+                                        <TextField
+                                            style={inputStyle}
+                                            defaultValue={user.displayName}
+                                            id="standard-basic"
+                                            label="Name"
+                                            variant="outlined"
+                                            {...register("user", { required: true })} />
                                         {errors.user && <span>This field is required</span>}
 
-                                        <TextField style={inputStyle} defaultValue={user.email} id="standard-basic" label="Email" variant="outlined"  {...register("email", { required: true })} />
+                                        <TextField
+                                            style={inputStyle}
+                                            defaultValue={user.email}
+                                            id="standard-basic"
+                                            label="Email"
+                                            variant="outlined"
+                                            {...register("email", { required: true })} />
                                         {errors.email && <span>This field is required</span>}
 
-                                        <TextField type='tel' style={inputStyle} id="standard-basic" variant="outlined" label="Phone Number" {...register("phone", { required: true })} />
+                                        <TextField
+                                            type='tel'
+                                            style={inputStyle}
+                                            id="standard-basic"
+                                            variant="outlined"
+                                            label="Phone Number"
+                                            {...register("phone", { required: true })} />
                                         {errors.phone && <span>This field is required</span>}
 
-                                        <TextField id="standard-basic" variant="outlined" label="Address" style={inputStyle}  {...register("address", { required: true })} />
+                                        <TextField
+                                            id="standard-basic"
+                                            variant="outlined"
+                                            label="Address"
+                                            style={inputStyle}
+                                            {...register("address", { required: true })} />
                                         {errors.address && <span>This field is required</span>}
 
 
-                                        <TextField multiline label="Description" style={inputStyle} id="standard-basic" variant="outlined"  {...register("description", { required: true })} />
+                                        <TextField
+                                            multiline
+                                            label="Description"
+                                            style={inputStyle}
+                                            id="standard-basic"
+                                            variant="outlined"
+                                            {...register("description", { required: true })} />
                                         {errors.description && <span>This field is required</span>}
                                     </Box>
                                     <input style={{ color: 'white', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Place Order" />

@@ -44,7 +44,7 @@ const ManageProducts = () => {
             <Box sx={{py:3}}>
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
                 {
-                    products.map(product => <SingleManageProduct load2={load2} handleUpdateProduct={handleUpdateProduct} product={product}></SingleManageProduct>)
+                    products.map(product => <SingleManageProduct key={product._id} load2={load2} handleUpdateProduct={handleUpdateProduct} product={product}></SingleManageProduct>)
                 }
             </Box>
 

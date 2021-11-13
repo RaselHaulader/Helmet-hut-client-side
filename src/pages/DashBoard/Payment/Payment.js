@@ -1,9 +1,11 @@
+import { Typography } from '@mui/material';
+import { Box } from '@mui/system';
 import React from 'react';
 
 const Payment = () => {
     return (
         <div>
-            <h1>Add payment</h1>
+           <Box><Typography sx={{textAlign:'center', color:'gray', pt:5}} variant="h4">Payment system coming soon.....</Typography></Box>
         </div>
     );
 };

@@ -3,7 +3,7 @@ import SingleOrder from './SingleOrder'
 import axios from 'axios';
 import useAuth from '../../../hooks/useAuth'
 import { Box } from '@mui/system';
-import { Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 import Loader from "react-js-loader";
 
 
@@ -40,7 +40,8 @@ const UserOrder = () => {
     }, [])
     return (
         <div>
-            <Box><Typography variant='h6' sx={{ textAlign: 'center' }}> Your Total Order is: {orders.length}</Typography></Box>
+            <Box><Typography variant='h6' sx={{py:3, fontWeight:'bolder',color:'gray', textAlign: 'center' }}> Your Total Order is: {orders.length}</Typography></Box>
+            <Divider/><br/> 
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
             {
                 orders.map(order => <SingleOrder handleCancel={handleCancel} key={order._id} order={order}></SingleOrder>)

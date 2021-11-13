@@ -7,17 +7,18 @@ import Loader from "react-js-loader";
 
 const MakeAdmin = () => {
     const [load, setLoad] = useState(false)
-    const { register, handleSubmit,  formState: { errors } } = useForm();
-    const onSubmit = data =>{
+    const { register, handleSubmit, formState: { errors } } = useForm();
+    const onSubmit = data => {
         setLoad(true)
         console.log(data)
-        axios.post('https://powerful-mountain-89009.herokuapp.com/makeAdmin',data)
-        .then(res=>{
-            if (res.data.acknowledged) {
-                setLoad(false)
-                alert(data.email + 'now an admin')
-            }
-            console.log(res)})
+        axios.post('https://powerful-mountain-89009.herokuapp.com/makeAdmin', data)
+            .then(res => {
+                if (res.data.acknowledged) {
+                    setLoad(false)
+                    alert(data.email + 'now an admin')
+                }
+                console.log(res)
+            })
     }
 
     const inputStyle = {
@@ -30,16 +31,15 @@ const MakeAdmin = () => {
         <div>
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Box style={{ boxShadow: '5px 5px 22px -7px gray', borderRadius: '10px' }} sx={{ p: 2, width: { md: '50%', xs: '100%' } }}>
-                    <Box sx={{ textAlign: 'center' }}>
-                        <h1>ADD AN ADMIN </h1>
-                        <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
-                    </Box>
+                <Typography variant="h4" sx={{mt:3,textAlign: 'center', textTransform:'uppercase', fontWeight:'bold' }}>Make An<Box sx={{color:'tomato', display:'inline'}}> Admin</Box></Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
+                    <Typography variant='h6' sx={{ px: 5, py: 3, fontSize: '13px', color: 'gray', textAlign:'center' }}>For add an admin give email and then submit. provided email users will be the admin.</Typography>
                     {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
                     <form onSubmit={handleSubmit(onSubmit)}>
                         <Typography variant="h6">Email</Typography>
-                        <input style={inputStyle}  {...register("email", { required: true })} />
-                        {errors.email && <span>This field is required</span>} <br/>
-                        <input type="submit" />
+                        <input placeholder="Email" style={inputStyle}  {...register("email", { required: true })} />
+                        {errors.email && <span>This field is required</span>} <br />
+                        <input style={{color:'white',fontSize:'16px', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor:'pointer' }} type="submit" value="Make Admin" />
                     </form>
                 </Box>
             </Box>

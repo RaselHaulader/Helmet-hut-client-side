@@ -40,14 +40,14 @@ const SingleAllOrder = (props) => {
             </Item>
             <Item sx={{alignItems: 'center', display: 'flex',}}>
                 <Box >  
-                    <Typography sx={{fontSize:'14px', fontWeight:'bolder' }} variant="h6">{name}</Typography>
+                    <Typography sx={{fontSize:'14px', fontWeight:'bolder',color:'gray' }} variant="h6">{name}</Typography>
                     <Typography sx={{fontSize:'10px', color:'gray' }} variant="caption">{title}</Typography> <br />
                     <Rating size="small" name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
                 </Box>
             </Item>
             <Item>
                 <Box >
-                    <Typography sx={{fontSize:'14px', fontWeight:'bolder' }} variant="h6">{user}</Typography>
+                    <Typography sx={{fontSize:'14px', fontWeight:'bolder', color:'gray' }} variant="h6">{user}</Typography>
                     <Typography  sx={{fontSize:'12px', color:'gray' }} variant='p'>{email}</Typography> <br />
                     <Typography sx={{fontSize:'12px', color:'gray' }} variant='p'>{phone}</Typography> <br />
                     <Typography sx={{fontSize:'12px', color:'gray' }} variant='p'>{address}</Typography> <br />

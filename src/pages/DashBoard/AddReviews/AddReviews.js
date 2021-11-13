@@ -12,7 +12,7 @@ const AddReviews = () => {
     const [rating, setValue] = React.useState(0);
     const [load, setLoad] = useState(false)
     const { user } = useAuth()
-    const inputEl  = useRef()
+    const inputEl = useRef()
     const [ratingWarning, setRatingWarning] = useState('')
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
@@ -23,7 +23,7 @@ const AddReviews = () => {
             const reviewerImg = {}
             user.photoURL ? reviewerImg.img = user.photoURL : reviewerImg.img = 'https://i.ibb.co/TbH5Zfw/user-circle-icon-152504.png'
             console.log({ ...data, rating, ...reviewerImg })
-          
+
             axios.post('https://powerful-mountain-89009.herokuapp.com/addReview', { ...data, rating, ...reviewerImg })
                 .then(res => {
                     reset()
@@ -49,20 +49,19 @@ const AddReviews = () => {
 
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
                 <Box style={{ boxShadow: '5px 5px 22px -7px gray', borderRadius: '10px' }} sx={{ p: 2, width: { md: '50%', xs: '100%' } }}>
-                    <Box sx={{ textAlign: 'center' }}>
-                        <h1>WRITE A REVIEW  </h1>
-                        <p>Lorem ipsum dolor sit amet consectetur  dolor sit amet consectetur adipisicing elit. Quis, sint!</p>
-                    </Box>
+                    <Typography variant="h4" sx={{ mt: 3, textAlign: 'center', textTransform: 'uppercase', fontWeight: 'bold' }}>Write A<Box sx={{ color: 'tomato', display: 'inline' }}> Review</Box></Typography>
+                    <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
+                    <Typography variant='h6' sx={{ px: 5, py: 3, textAlign: 'center', fontSize: '13px', color: 'gray' }}>Feel free to share your opinion with everyone by give an review.Your review will display in homepage review section.</Typography>
                     {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
                     <form ref={inputEl} onSubmit={handleSubmit(onSubmit)}>
                         <Typography variant="p">Your Name</Typography>
                         <input style={inputStyle} defaultValue={user.displayName} {...register("name")} />
 
                         <Typography variant="p">Review Details</Typography>
-                        <textarea  minLength='50' placeholder='Write your review min 50 character' style={{ ...inputStyle, height: '200px' }} {...register("details", { required: true })} />
+                        <textarea minLength='50' placeholder='Write your review min 50 character' style={{ ...inputStyle, height: '200px' }} {...register("details", { required: true })} />
                         {errors.details && <span>This field is required</span>}
                         <Box sx={{ display: 'flex' }}> <Typography variant="p">Star Rating : </Typography><Ratings value={rating} setValue={setValue}></Ratings><span>{ratingWarning}</span> </Box>
-                        <input type="submit" />
+                        <input style={{ color: 'white', margin: "10px 0", width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Add Review" />
                     </form>
                 </Box>
             </Box>

@@ -38,7 +38,7 @@ const AddProducts = () => {
                 <Box style={{ boxShadow: '5px 5px 22px -7px gray', borderRadius: '10px' }} sx={{ p: 2, width: { md: '50%', xs: '100%' } }}>
                     <Typography variant="h4" sx={{mt:3,textAlign: 'center', textTransform:'uppercase', fontWeight:'bold' }}>Add A<Box sx={{color:'tomato', display:'inline'}}> Product</Box></Typography>
                        <Box sx={{display:'flex', justifyContent:'center'}}> <Box sx={{width:'40px', height:'2px',bgcolor:'tomato'}}></Box></Box>
-                        <Typography variant='h6' sx={{px:5, py:3, fontSize:'13px', color:'gray'}}>Fill all the field carefully.Don't skip any field. Your added Product will shows in explore all product page.</Typography>
+                        <Typography variant='h6' sx={{px:5, py:3,textAlign:'center', fontSize:'13px', color:'gray'}}>Fill all the field carefully.Don't skip any field. Your added Product will shows in explore all product page.</Typography>
                     {load && <Loader type="spinner-cub" bgColor={"tomato"} color={'#FFFFFF'} size={50} />}
                     <form ref={formRef} onSubmit={handleSubmit(onSubmit)}>
 

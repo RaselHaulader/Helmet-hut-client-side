@@ -5,7 +5,7 @@ import Loader from "react-js-loader";
 
 
 const SingleManageProduct = (props) => {
-    const { img, title, name, _id, details, price, status, rating } = props.product
+    const { img, title, name, _id, details, price, rating } = props.product
     const handleUpdateProduct = props.handleUpdateProduct
     const load2 = props.load2
     function Item(props) {
@@ -45,16 +45,16 @@ const SingleManageProduct = (props) => {
                 </Box>
             </Item>
             <Item>
-                <Typography paragraph>{details}</Typography>
+                <Typography sx={{color:'gray', fontSize:'12px'}} paragraph>{details}</Typography>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                ${price}
+             <Box sx={{color:'tomato'}}> ${price}</Box>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-                {status}
+                <Button size="small" variant="contained" >Edit</Button>
             </Item>
             <Item sx={{ alignItems: 'center', display: 'flex', textAlign: { md: 'center' } }}>
-               <Button onClick={()=>handleUpdateProduct(_id)}>{load2.load && load2.id===_id ? <Loader type="spinner-cub" bgColor={"tomato"}  size={20} />: "Delete"}</Button>
+               <Button size="small" sx={{bgcolor:'crimson'}} variant="contained" onClick={()=>handleUpdateProduct(_id)}>{load2.load && load2.id===_id ? <Loader type="spinner-cub" bgColor={"tomato"}  size={20} />: "Delete"}</Button>
             </Item>
         </Box>
 

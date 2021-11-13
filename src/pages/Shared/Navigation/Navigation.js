@@ -19,7 +19,8 @@ const Navigation = () => {
     }
     const style = {
         color: 'black',
-        textDecoration: 'none'
+        textDecoration: 'none',
+        fontWeight:'bold'
     }
     return (
         <Box sx={{ bgcolor: 'white' }}>
@@ -27,25 +28,22 @@ const Navigation = () => {
                 <Box sx={{ flexGrow: 1, }}>
                     <AppBar position="static" sx={{ boxShadow: 0, bgcolor: 'transparent', color: 'black' }}>
                         <Toolbar>
-                            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-                                HELMET HUT
+                            <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight:'bold' }}>
+                                HELMET <Box sx={{color:'tomato', display:'inline'}}> HUT</Box>
                             </Typography>
                             <Box sx={{ display: { md: 'block', sm: 'none', xs: 'none' } }}>
-                                <NavLink style={style} activeStyle={activeStyle} to='/home'><Button color="inherit">Home</Button></NavLink>
-                                <NavLink style={style} activeStyle={activeStyle} to='/explore'><Button color="inherit" >Explore More</Button></NavLink>
+                                <NavLink style={style} activeStyle={activeStyle} to='/home'><Button  sx={{fontWeight:'bold'}}  color="inherit">Home</Button></NavLink>
+                                <NavLink style={style} activeStyle={activeStyle} to='/explore'><Button  sx={{fontWeight:'bold'}}  color="inherit" >Explore More</Button></NavLink>
 
 
                                 {user?.displayName ? <>
-                                    {user?.displayName && admin ? <NavLink style={style} activeStyle={activeStyle} to='/dashboard/AllOrder'>
-                                        <Button color="inherit" >DashBoard</Button>
-                                    </NavLink> : <NavLink style={style} activeStyle={activeStyle} to='/dashboard'>
-                                        <Button color="inherit" >DashBoard</Button>
-                                    </NavLink>}
-
-                                    <Button color="inherit">{user?.displayName}</Button>
-                                    <Button color="inherit" onClick={logOut}>LogOut</Button></> :
+                                    <NavLink style={style} activeStyle={activeStyle} to='/dashboard'>
+                                        <Button  sx={{fontWeight:'bold'}} color="inherit" >DashBoard</Button>
+                                    </NavLink>
+                                    <Button sx={{fontWeight:'bold'}}  color="inherit">{user?.displayName}</Button>
+                                    <Button  sx={{fontWeight:'bold'}} color="inherit" onClick={logOut}>LogOut</Button></> :
                                     <NavLink style={style} activeStyle={activeStyle} to='/login'>
-                                        <Button color="inherit" >login</Button>
+                                        <Button  sx={{fontWeight:'bold'}} color="inherit" >login</Button>
                                     </NavLink>}
 
                             </Box>

@@ -142,13 +142,13 @@ function DashBoard(props) {
                 <Toolbar />
                 <Switch>
                     <Route exact path={path}>
-                        <UserOrder></UserOrder>
+                       {!admin ?  <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
                     </Route>
-                    <Route path={`${path}/userOrder`}>
-                        <UserOrder></UserOrder>
+                    <Route exact path={`${path}/userOrder`}>
+                    {!admin ?  <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
                     </Route>
                     <Route exact path={`${path}/payment`}>
-                        <Payment></Payment>
+                      {!admin ? <Payment></Payment> : <ManageAllOrders></ManageAllOrders>} 
                     </Route>
                     <Route exact path={`${path}/Review`}>
                         <AddReviews></AddReviews>

@@ -1,5 +1,5 @@
 import { Button, Icon, Rating, Typography } from '@mui/material';
-import { Box } from '@mui/system';
+import { Box, fontSize } from '@mui/system';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,8 @@ const useStyles = makeStyles({
         padding: '5px 10px',
         transition: '0.3s',
         border: '1px solid  rgb(229, 229, 229)',
+        color:'gray',
+        
     },
 
 });
@@ -51,8 +53,8 @@ const Product = (props) => {
             </Box>
             <Box sx={{ pt: 2, textAlign: 'left' }}>
                 <Typography
-                    variant='p'
-                    sx={{ fontSize: 12 }}>
+                    variant='h6'
+                    sx={{ fontSize: 12, color:'rgba(168, 168, 168, 0.945)' }}>
                     {title}
                 </Typography>
                 <Typography
@@ -65,7 +67,7 @@ const Product = (props) => {
                     }}>
                     {name}
                 </Typography>
-                
+
                 <Typography variant='h3'
                     sx={{
                         mt: 1,
@@ -73,14 +75,13 @@ const Product = (props) => {
                         fontSize: 16,
                         fontWeight: 'bold'
                     }}>
-                    ${price}
+                     <Box sx={{color:'tomato', display:'inline'}}>$ {price}</Box>
                 </Typography>
                 <Typography
-                    variant='p'
+                    paragraph
                     sx={{
                         mt: 1,
                         fontSize: 12,
-                        fontWeight: 'bold',
                         color: 'gray'
                     }}>
                     {details.slice(0, 80)}
@@ -98,10 +99,8 @@ const Product = (props) => {
                             <Box
                                 className={classes.btn}
                             >
-                                <Typography
-                                    variant="caption"
-                                >
-                                    <i class="fas fa-dollar-sign"></i> Purchase</Typography>
+                                <Typography variant="caption" sx={{fontWeight:'bold'}}>
+                                     <i className="fas fa-dollar-sign"></i> Purchase</Typography>
                             </Box>
                         </Link>
                     </Box>
@@ -111,11 +110,12 @@ const Product = (props) => {
                         sx={{
                             width: '10%',
                             textAlign: 'center',
-                            ml: "4px"
+                            ml: "4px",
+                           
                         }}>
                         <Typography
-                            variant="caption">
-                            <i class="fas fa-cart-plus"></i>
+                            variant="caption" >
+                            <i className="fas fa-cart-plus"></i>
                         </Typography>
                     </Box>
 
@@ -128,8 +128,8 @@ const Product = (props) => {
                         }}>
 
                         <Typography
-                            variant="caption">
-                            <i class="far fa-heart"></i>
+                            variant="caption" >
+                            <i className="far fa-heart"></i>
                         </Typography>
                     </Box>
                 </Box>

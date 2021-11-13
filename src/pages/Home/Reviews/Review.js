@@ -1,4 +1,4 @@
-import { Rating } from '@mui/material';
+import { Rating, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
@@ -36,13 +36,13 @@ const Review = (props) => {
     const classes = useStyles();
     return (
         <Item className={classes.shadow}>
-            <Box>
+            <Box sx={{py:5}}>
                 <Box >
                     <img style={{borderRadius:'50%'}} width="30%" height="30%" src={img} alt="" />
                 </Box>
                 <Box>
                     <h3>{name}</h3>
-                    <p>{details}</p>
+                    <Typography sx={{color:'gray', my:3}}>{details}</Typography>
                     <Rating size="small" name="half-rating-read" defaultValue={rating} precision={0.5} readOnly />
                 </Box>
             </Box>

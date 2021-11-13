@@ -12,7 +12,7 @@ import useAuth from '../../../hooks/useAuth';
 export default function NavigationDrawer() {
 
 
-  const { user, logOut } = useAuth()
+  const { user, logOut, admin } = useAuth()
   const activeStyle = {
     fontWeight: "bold",
     color: "red"
@@ -40,24 +40,15 @@ export default function NavigationDrawer() {
       onClick={toggleDrawer(anchor, false)}
       onKeyDown={toggleDrawer(anchor, false)}
     >
-      <List>
-        <NavLink to='/home' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
-          <ListItem button >
-            <ListItemText primary={'Home'} />
-          </ListItem>
-        </NavLink>
-        <NavLink to='/explore' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
-          <ListItem button >
-            <ListItemText primary={'Explore More'} />
-          </ListItem>
-        </NavLink>
+      <List sx={{ textAlign: 'center' }}>
+        <NavLink style={style} activeStyle={activeStyle} to='/home'><Button color="inherit">Home</Button></NavLink> <br />
+        <NavLink style={style} activeStyle={activeStyle} to='/explore'><Button color="inherit" >Explore More</Button></NavLink><br />
 
         {user?.displayName ? <>
-          <NavLink to='/dashboard' style={{ textDecoration: 'none', color: 'black' }} activeStyle={{ color: 'tomato' }}>
-            <ListItem button >
-              <ListItemText primary={'Dashboard'} />
-            </ListItem>
-          </NavLink><Button color="inherit">{user?.displayName}</Button> <br />
+          <NavLink style={style} activeStyle={activeStyle} to='/dashboard'>
+            <Button color="inherit" >DashBoard</Button>
+          </NavLink> <br />
+          <Button color="inherit">{user?.displayName}</Button> <br />
           <Button color="inherit" onClick={logOut}>LogOut</Button></> :
           <NavLink style={style} activeStyle={activeStyle} to='/login'>
             <Button color="inherit" >login</Button>

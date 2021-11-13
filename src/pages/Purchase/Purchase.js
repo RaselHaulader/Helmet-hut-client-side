@@ -90,17 +90,17 @@ const Purchase = () => {
                                     <Box sx={{ px: 2 }}>
                                         <Box sx={{ display: 'flex', justifyContent: 'space-between', }}>
                                             <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>{product?.name}</Typography>
-                                            <Typography variant='h6' sx={{ pt: 2, textTransform: 'uppercase', fontWeight: 'bold' }}>${product?.price}</Typography>
+                                            <Typography variant='h6' sx={{ pt: 2, color: 'coral', textTransform: 'uppercase', fontWeight: 'bold' }}>${product?.price}</Typography>
                                         </Box>
                                         <Box>
-                                            <Typography variant="caption" sx={{ display: 'block' }}>
+                                            <Typography variant="caption" sx={{ display: 'block', color: 'lightSkyBlue' }}>
                                                 {product?.title}
                                             </Typography>
-                                            <Typography variant="caption" sx={{ display: 'block' }}>
+                                            <Typography variant="caption" sx={{ color: 'gray', display: 'block' }}>
                                                 {product?.details}
                                             </Typography>
 
-                                            <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly />
+                                            <Box sx={{display:'flex', my:1}}><Typography variant='h6' sx={{fontSize:'16px' ,color:'gray'}}>Rating:</Typography> <Rating name="half-rating-read" defaultValue={4.5} precision={0.5} readOnly /></Box>
                                         </Box>
                                         {load2 && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
 
@@ -120,7 +120,7 @@ const Purchase = () => {
                                         <TextField multiline label="Description" style={inputStyle} id="standard-basic" variant="outlined"  {...register("description", { required: true })} />
                                         {errors.description && <span>This field is required</span>}
                                     </Box>
-                                    <input style={{ width: '100%', border: 'none', padding: '10px 15px', background: 'tomato' }} type="submit" />
+                                    <input style={{ color: 'white', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Place Order" />
                                 </form>
                             </Box>
                         </Item>

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import SingleManageProduct from './SingleManageProducts';
 import axios from 'axios';
-import { Typography } from '@mui/material';
+import { Divider, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import Loader from "react-js-loader";
 
@@ -39,11 +39,14 @@ const ManageProducts = () => {
     }
     return (
         <div>
-            <Box><Typography variant='h6' sx={{ textAlign: 'center' }}> Total amount of product is: {products.length} </Typography></Box>
+            <Box><Typography variant='h6' sx={{ my: 3, textAlign: 'center', fontWeight: 'bolder', color: 'gray' }}> Total amount of product is: {products.length} </Typography></Box>
+            <Divider></Divider>
+            <Box sx={{py:3}}>
             {load && <Loader type="spinner-cub" bgColor={"tomato"} size={50} />}
-            {
-                products.map(product => <SingleManageProduct load2={load2} handleUpdateProduct={handleUpdateProduct} product={product}></SingleManageProduct>)
-            }
+                {
+                    products.map(product => <SingleManageProduct load2={load2} handleUpdateProduct={handleUpdateProduct} product={product}></SingleManageProduct>)
+                }
+            </Box>
 
         </div>
     );

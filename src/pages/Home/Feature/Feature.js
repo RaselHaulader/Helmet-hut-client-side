@@ -84,8 +84,8 @@ const Feature = () => {
                             </Item>
                         </Box>
                     </Item>
-                    <Item sx={{display:'flex', alignItems:'center'}}>
-                        <img style={{borderRadius:'20px'}} width="100%" src={featureImg} alt="" />
+                    <Item   sx={{display:'flex', alignItems:'center'}}>
+                        <img data-aos="zoom-in"  data-aos-anchor-placement="top-center" style={{borderRadius:'20px'}} width="100%" src={featureImg} alt="" />
                     </Item>
                 </Box>
             </Container>

@@ -62,8 +62,28 @@ const AddReviews = () => {
                             textTransform: 'uppercase',
                             fontWeight: 'bold'
                         }}>
-                        Write A<Box sx={{ color: 'tomato', display: 'inline' }}> Review</Box></Typography>
-                    <Box sx={{ display: 'flex', justifyContent: 'center' }}> <Box sx={{ width: '40px', height: '2px', bgcolor: 'tomato' }}></Box></Box>
+                        Write A
+                        <Box
+                            sx={{
+                                color: 'tomato',
+                                display: 'inline'
+                            }}>
+                            Review
+                        </Box>
+                    </Typography>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent: 'center'
+                        }}>
+                        <Box
+                            sx={{
+                                width: '40px',
+                                height: '2px',
+                                bgcolor: 'tomato'
+                            }}>
+                        </Box>
+                    </Box>
 
                     <Typography
                         variant='h6'
@@ -92,7 +112,20 @@ const AddReviews = () => {
                             style={{ ...inputStyle, height: '200px' }}
                             {...register("details", { required: true })} />
                         {errors.details && <span>This field is required</span>}
-                        <Box sx={{ display: 'flex' }}> <Typography variant="p">Star Rating : </Typography><Ratings value={rating} setValue={setValue}></Ratings><span>{ratingWarning}</span> </Box>
+                        <Box
+                            sx={{
+                                display: 'flex'
+                            }}>
+                            <Typography
+                                variant="p">
+                                Star Rating :
+                            </Typography>
+                            <Ratings
+                                value={rating}
+                                setValue={setValue}>
+                            </Ratings>
+                            <span>{ratingWarning}</span>
+                        </Box>
                         <input
                             style={{
                                 color: 'white',

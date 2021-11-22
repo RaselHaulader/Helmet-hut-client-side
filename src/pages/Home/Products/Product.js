@@ -37,7 +37,8 @@ const Product = (props) => {
         );
     }
     return (
-        <Item>
+        <Item data-aos="fade-up"
+       >
             <Box>
                 <Box sx={{
                     overflow: 'hidden',

@@ -6,9 +6,8 @@ import banner2 from '../../../images/banner2.png'
 import banner3 from '../../../images/banner3.png'
 import banner4 from '../../../images/banner4.jpg'
 import BannerItem from './BannerItem';
-import { Swiper, SwiperSlide } from "swiper/react";
-import 'swiper/swiper-bundle.min.css'
-import 'swiper/swiper.min.css'
+import { Swiper, SwiperSlide } from 'swiper/react/swiper-react.js';
+import 'swiper/swiper.scss'; // core Swiper
 
 
 

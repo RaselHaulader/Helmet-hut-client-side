@@ -4,10 +4,12 @@ Visit this site to know more about [Helmet Hut](https://helmet-hut.web.app/)
 
 
 ## Site functionality
-- add items to database
-- delete items to database
-- create items and save into database
-- update database items information
+- User can place an order.
+- User can cancel his/her orders.
+- User can add a review with star rating.
+- Admin can create new item or delete any items from database.
+- Admin also able to make a new admin.
+- Admin can update orders status and delete any order.
 - firebase google authentication
 - react router routing
 - context api and react hooks for state management

@@ -3,6 +3,7 @@ import { Box, fontSize } from '@mui/system';
 import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
+import useCart from '../../../hooks/useCart';
 
 
 const useStyles = makeStyles({
@@ -13,14 +14,14 @@ const useStyles = makeStyles({
         transition: '0.3s',
         border: '1px solid  rgb(229, 229, 229)',
         color:'gray',
-        
     },
-
 });
 
 const Product = (props) => {
     const { name, title, img, price, details, rating, _id } = props.product
     const classes = useStyles();
+    const {addItem} = useCart()
+    console.log('product');
     function Item(props) {
         const { sx, ...other } = props;
         return (
@@ -37,8 +38,7 @@ const Product = (props) => {
         );
     }
     return (
-        <Item data-aos="fade-up"
-       >
+        <Item >
             <Box>
                 <Box sx={{
                     overflow: 'hidden',
@@ -107,12 +107,12 @@ const Product = (props) => {
                     </Box>
 
                     <Box
+                        onClick={()=>addItem(_id, name, price, img)}
                         className={classes.btn}
                         sx={{
                             width: '10%',
                             textAlign: 'center',
                             ml: "4px",
-                           
                         }}>
                         <Typography
                             variant="caption" >

@@ -13,6 +13,7 @@ import AuthProvider from "./context/AuthProvider";
 import NotFound from "./pages/NotFound/NotFound";
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
+import CartProvider from "./context/CartProvider";
 // ..
 AOS.init();
 
@@ -20,31 +21,33 @@ function App() {
   return (
     <div >
       <AuthProvider>
-        <Router>
-          <Switch>
-            <Route exact path="/">
-              <Home></Home>
-            </Route>
-            <Route exact path="/home">
-              <Home></Home>
-            </Route>
-            <Route exact path="/explore">
-              <Explore></Explore>
-            </Route>
-            <PrivateRoute path="/purchase/:id">
-              <Purchase></Purchase>
-            </PrivateRoute>
-            <PrivateRoute path="/dashboard">
-              <DashBoard></DashBoard>
-            </PrivateRoute>
-            <Route path="/login">
-              <Login></Login>
-            </Route>
-            <Route path="*">
-             <NotFound></NotFound>
-            </Route>
-          </Switch>
-        </Router>
+        <CartProvider>
+          <Router>
+            <Switch>
+              <Route exact path="/">
+                <Home></Home>
+              </Route>
+              <Route exact path="/home">
+                <Home></Home>
+              </Route>
+              <Route exact path="/explore">
+                <Explore></Explore>
+              </Route>
+              <PrivateRoute path="/purchase/:id">
+                <Purchase></Purchase>
+              </PrivateRoute>
+              <PrivateRoute path="/dashboard">
+                <DashBoard></DashBoard>
+              </PrivateRoute>
+              <Route path="/login">
+                <Login></Login>
+              </Route>
+              <Route path="*">
+                <NotFound></NotFound>
+              </Route>
+            </Switch>
+          </Router>
+        </CartProvider>
       </AuthProvider>
     </div>
   );

@@ -1,0 +1,12 @@
+.cart-img{
+    margin: auto;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+}
+.cart-img img{
+    transition: 01s;
+}
+.cart-img img:hover{
+   transform: scale(5.2);
+}

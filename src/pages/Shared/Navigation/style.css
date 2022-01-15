@@ -1,0 +1,40 @@
+.cartItem{
+    color:red;
+    width: 300px;
+}
+.cartItem-container{
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr 2fr ;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(209, 209, 209, 0.74);
+    margin-bottom: 2px;
+    padding: 2px 5px;
+
+}
+.cartItem-container img{
+    width: 30px;
+    height: 30px;
+}
+.cartItem-container h5{
+    padding: 0 5px;
+    margin: 0;
+}
+.cartItem-container div{
+    text-align: center;
+    display: flex;
+    align-items: center;
+}
+.cartItem-container span{
+    color: red;
+    padding: 5px;
+    font-size: 25px;
+    cursor: pointer;
+    display: inline;
+}
+.cartItem-container input{
+    width: 20px;
+    border: none;
+    background-color: rgb(231, 231, 231);
+    padding: 5px;
+}

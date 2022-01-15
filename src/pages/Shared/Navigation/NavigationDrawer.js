@@ -9,6 +9,7 @@ import { ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import useAuth from '../../../hooks/useAuth';
 import Swal from 'sweetalert2'
+import TemporaryDrawer from './Cartdrawer';
 
 export default function NavigationDrawer() {
 
@@ -29,27 +30,27 @@ export default function NavigationDrawer() {
     right: false,
   });
 
-  const handleLogOut =()=>{
+  const handleLogOut = () => {
     Swal.fire({
-        title: 'Are you sure?',
-        text: "You won't be able to access this!",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, Sign Out!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-            logOut()
-          Swal.fire(
-            'Sign Out!',
-            'Successfully SignOut.',
-            'success'
-          )
-        }
-      })
-   
-}
+      title: 'Are you sure?',
+      text: "You won't be able to access this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, Sign Out!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        logOut()
+        Swal.fire(
+          'Sign Out!',
+          'Successfully SignOut.',
+          'success'
+        )
+      }
+    })
+
+  }
   const toggleDrawer = (anchor, open) => (event) => {
     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
       return;
@@ -69,9 +70,8 @@ export default function NavigationDrawer() {
 
         {user?.displayName ? <>
           <NavLink style={style} activeStyle={activeStyle} to='/dashboard'>
-            <Button color="inherit" >DashBoard</Button>
+            <Button color="inherit">{user?.displayName}</Button> <br />
           </NavLink> <br />
-          <Button color="inherit">{user?.displayName}</Button> <br />
           <Button color="inherit" onClick={handleLogOut}>LogOut</Button></> :
           <NavLink style={style} activeStyle={activeStyle} to='/login'>
             <Button color="inherit" >login</Button>

@@ -10,6 +10,7 @@ const Products = () => {
     const [products, setProducts] = useState([])
     const { isLoading, setLoading } = useAuth()
     useEffect(() => {
+        console.log('product container');
         setLoading(true)
         axios.get('https://powerful-mountain-89009.herokuapp.com/allProducts')
             .then(res => {

@@ -27,6 +27,7 @@ import { Button } from '@mui/material';
 import useAuth from '../../../hooks/useAuth';
 import AdminRoute from '../../../privateRoute/AdminRoute';
 import Swal from 'sweetalert2'
+import Navigation from '../../Shared/Navigation/Navigation';
 
 const drawerWidth = 240;
 
@@ -72,7 +73,7 @@ function DashBoard(props) {
     }
     const drawer = (
         <div>
-            <Toolbar sx={{ bgcolor: 'tomato', color: 'white' }}><Typography variant="h5">{user.displayName} {admin && "(Admin)"}</Typography></Toolbar>
+            <Toolbar sx={{ bgcolor: 'white', color: 'tomato' }}><Typography variant="h5">Helmet Hut</Typography></Toolbar>
             <Divider />
             <List>
                 {!admin && <>
@@ -99,13 +100,14 @@ function DashBoard(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex' }}>
-            <CssBaseline />
-            <AppBar
+        <>
+            <Box sx={{ display: 'flex' }}>
+                <CssBaseline />
+                <AppBar
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` }, bgcolor: 'tomato  '
+                    ml: { sm: `${drawerWidth}px` }, bgcolor: 'white'
                 }}
             >
                 <Toolbar>
@@ -118,82 +120,81 @@ function DashBoard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Link style={{ textDecoration: 'none', color: 'white' }} to="/"><Typography variant="h6" noWrap component="div">
-                        Helmet Hut
+                    <Link style={{ textDecoration: 'none', color: 'tomato' }} to="/"><Typography variant="h6" noWrap component="div">
+                    {user.displayName} {admin && "(Admin)"}
                     </Typography></Link>
                 </Toolbar>
             </AppBar>
-            <Box
-                component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-                aria-label="mailbox folders"
-            >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onClose={handleDrawerToggle}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
+                <Box
+                    component="nav"
+                    sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+                    aria-label="mailbox folders"
                 >
-                    {drawer}
-                </Drawer>
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                    open
+                    {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                    <Drawer
+                        container={container}
+                        variant="temporary"
+                        open={mobileOpen}
+                        onClose={handleDrawerToggle}
+                        ModalProps={{
+                            keepMounted: true, // Better open performance on mobile.
+                        }}
+                        sx={{
+                            display: { xs: 'block', sm: 'none' },
+                            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        }}
+                    >
+                        {drawer}
+                    </Drawer>
+                    <Drawer
+                        variant="permanent"
+                        sx={{
+                            display: { xs: 'none', sm: 'block' },
+                            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+                        }}
+                        open
+                    >
+                        {drawer}
+                    </Drawer>
+                </Box>
+                <Box
+                    component="main"
+                    sx={{mt:7, flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
                 >
-                    {drawer}
-                </Drawer>
-            </Box>
-            <Box
-                component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
-            >
-                <Toolbar />
-                <Switch>
-                    <Route exact path={path}>
-                        {!admin ? <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
-                    </Route>
-                    <Route exact path={`${path}/userOrder`}>
-                        {!admin ? <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
-                    </Route>
-                    <Route exact path={`${path}/payment`}>
-                        {!admin ? <Payment></Payment> : <ManageAllOrders></ManageAllOrders>}
-                    </Route>
-                    <Route exact path={`${path}/Review`}>
-                        {!admin ? <AddReviews></AddReviews> : <ManageAllOrders></ManageAllOrders>}
+                    
+                    <Switch>
+                        <Route exact path={path}>
+                            {!admin ? <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
+                        </Route>
+                        <Route exact path={`${path}/userOrder`}>
+                            {!admin ? <UserOrder></UserOrder> : <ManageAllOrders></ManageAllOrders>}
+                        </Route>
+                        <Route exact path={`${path}/payment`}>
+                            {!admin ? <Payment></Payment> : <ManageAllOrders></ManageAllOrders>}
+                        </Route>
+                        <Route exact path={`${path}/Review`}>
+                            {!admin ? <AddReviews></AddReviews> : <ManageAllOrders></ManageAllOrders>}
 
-                    </Route>
-                    <AdminRoute exact path={`${path}/AllOrder`}>
-                        <ManageAllOrders></ManageAllOrders>
-                    </AdminRoute>
-                    <AdminRoute exact path={`${path}/AddProduct`}>
-                        <AddProduct></AddProduct>
-                    </AdminRoute>
-                    <AdminRoute exact path={`${path}/ManageProduct`}>
-                        <ManageProducts></ManageProducts>
-                    </AdminRoute>
-                    <AdminRoute exact path={`${path}/MakeAdmin`}>
-                        <MakeAdmin></MakeAdmin>
-                    </AdminRoute>
-                    <Route exact path={`${path}/signOut`}>
-                        <Login></Login>
-                    </Route>
-                </Switch>
+                        </Route>
+                        <AdminRoute exact path={`${path}/AllOrder`}>
+                            <ManageAllOrders></ManageAllOrders>
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/AddProduct`}>
+                            <AddProduct></AddProduct>
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/ManageProduct`}>
+                            <ManageProducts></ManageProducts>
+                        </AdminRoute>
+                        <AdminRoute exact path={`${path}/MakeAdmin`}>
+                            <MakeAdmin></MakeAdmin>
+                        </AdminRoute>
+                        <Route exact path={`${path}/signOut`}>
+                            <Login></Login>
+                        </Route>
+                    </Switch>
+                </Box>
             </Box>
-        </Box>
+        </>
     );
 }
 

@@ -40,7 +40,6 @@ export default function TemporaryDrawer() {
                     open={state['right']}
                     onClose={toggleDrawer('right', false)}
                 >
-
                     <Box onClick={toggleDrawer('right', false)} sx={{ display: 'inlineBlock', color: 'red', padding: '10px', cursor: 'pointer' }}><CloseIcon /></Box>
                     <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
                         {
@@ -53,7 +52,7 @@ export default function TemporaryDrawer() {
                         }, 0)} <br />
                          Total Price : {items.reduce((prev, curr) => {
                             return curr.price * curr.count + prev
-                        }, 0)} tk</Typography>
+                        }, 0)} tk </Typography>
                     <Box>
                     </Box>
                 </Drawer>

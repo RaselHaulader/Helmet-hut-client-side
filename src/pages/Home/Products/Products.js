@@ -4,17 +4,18 @@ import React, { useEffect, useState } from 'react';
 import Product from './Product';
 import axios from 'axios';
 import Loader from "react-js-loader";
-import useAuth from '../../../hooks/useAuth';
 
 const Products = () => {
     const [products, setProducts] = useState([])
-    const { isLoading, setLoading } = useAuth()
+    const [ isLoading, setLoading ] = useState(true)
     useEffect(() => {
         console.log('product container');
         setLoading(true)
         axios.get('https://powerful-mountain-89009.herokuapp.com/allProducts')
             .then(res => {
                 setProducts(res.data)
+                setLoading(false)
+            }).catch(err => {
                 setLoading(false)
             })
     }, [])

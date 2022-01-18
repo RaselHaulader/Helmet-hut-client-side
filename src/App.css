@@ -20,12 +20,12 @@ background-color: rgb(255, 255, 255);
 
 @keyframes load {
   0% {
-    transform: scaleX(0.5);
+    transform: scaleX(0.7);
   }
   50% {
     transform: scaleX(1);
   }
   100%{
-    transform: scaleX(0.5);
+    transform: scaleX(0.7);
   }
 }

@@ -40,19 +40,36 @@ export default function TemporaryDrawer() {
                     open={state['right']}
                     onClose={toggleDrawer('right', false)}
                 >
-                    <Box onClick={toggleDrawer('right', false)} sx={{ display: 'inlineBlock', color: 'red', padding: '10px', cursor: 'pointer' }}><CloseIcon /></Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
+                    <Box
+                        sx={{
+                            display: 'flex',
+                            justifyContent:'space-between',
+                            color: 'red',
+                            padding: '10px',
+                            cursor: 'pointer',
+                        }}>
+                        <CloseIcon onClick={toggleDrawer('right', false)} />
+                        <span>
+                            Total Item : {items.reduce((prev, curr) => {
+                                return curr.count + prev
+                            }, 0)}
+                        </span>
+                    </Box>
+                    <Box sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        flexDirection: 'column'
+                    }}>
                         {
                             items.map(item => <CartItem item={item}></CartItem>)
                         }
                     </Box>
-                    <Typography sx={{ textAlign: 'center' }}>
-                        Total Item : {items.reduce((prev, curr) => {
-                            return  curr.count + prev
-                        }, 0)} <br />
-                         Total Price : {items.reduce((prev, curr) => {
+                    <Typography sx={{ textAlign: 'center', color:'tomato' }}>
+
+                        Total Price : {items.reduce((prev, curr) => {
                             return curr.price * curr.count + prev
                         }, 0)} tk </Typography>
+                    <button className='checkOut-btn'>Check Out</button>
                     <Box>
                     </Box>
                 </Drawer>

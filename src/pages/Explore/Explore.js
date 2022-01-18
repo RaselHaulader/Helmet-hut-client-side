@@ -9,7 +9,7 @@ import Loader from "react-js-loader";
 import useAuth from '../../hooks/useAuth';
 
 const Explore = () => {
-    const { isLoading, setLoading } = useAuth()
+    const [isLoading, setLoading] = useState(true)
     const [products, setProducts] = useState([])
     useEffect(() => {
         setLoading(true)
@@ -17,7 +17,7 @@ const Explore = () => {
             .then(res => {
                 setProducts(res.data)
                 setLoading(false)
-            })
+            }).catch(err => setLoading(false))
     }, [])
 
     return (

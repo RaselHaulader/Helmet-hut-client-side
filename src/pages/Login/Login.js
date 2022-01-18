@@ -72,6 +72,7 @@ const Login = () => {
         })
         .catch((error) => {
           setError(error.message)
+          setLoad(false)
         });
 
       // for register

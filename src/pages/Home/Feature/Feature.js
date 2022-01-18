@@ -5,6 +5,7 @@ import featureImg from '../../../images/feature.jpg'
 
 function Item(props) {
     const { sx, ...other } = props;
+    console.log('feature');
     return (
         <Box
             sx={{

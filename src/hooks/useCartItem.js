@@ -14,7 +14,7 @@ const useCartItem = () => {
             setItems([...items, { id, name, price, img, count: 1 }])
         }
     }
-
+ 
     const removeItem = (id) => {
         const existingItems = [...items]
         const query = existingItems.filter(item => item.id == id)

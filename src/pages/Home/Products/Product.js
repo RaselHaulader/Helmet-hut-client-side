@@ -4,6 +4,7 @@ import React from 'react';
 import { makeStyles } from '@mui/styles';
 import { Link } from 'react-router-dom';
 import useCart from '../../../hooks/useCart';
+import AddTocartBtn from './AddTocartBtn';
 
 
 const useStyles = makeStyles({
@@ -13,14 +14,13 @@ const useStyles = makeStyles({
         padding: '5px 10px',
         transition: '0.3s',
         border: '1px solid  rgb(229, 229, 229)',
-        color:'gray',
+        color: 'gray',
     },
 });
 
 const Product = (props) => {
     const { name, title, img, price, details, rating, _id } = props.product
     const classes = useStyles();
-    const {addItem} = useCart()
     console.log('product');
     function Item(props) {
         const { sx, ...other } = props;
@@ -49,13 +49,13 @@ const Product = (props) => {
                     bgcolor: '#f4f4f4'
                 }}>
                     <img width="180px" height="180px" src={img} alt="" />
-                   
+
                 </Box>
             </Box>
             <Box sx={{ pt: 2, textAlign: 'left' }}>
                 <Typography
                     variant='h6'
-                    sx={{ fontSize: 12, color:'rgba(168, 168, 168, 0.945)' }}>
+                    sx={{ fontSize: 12, color: 'rgba(168, 168, 168, 0.945)' }}>
                     {title}
                 </Typography>
                 <Typography
@@ -76,7 +76,7 @@ const Product = (props) => {
                         fontSize: 16,
                         fontWeight: 'bold'
                     }}>
-                     <Box sx={{color:'tomato', display:'inline'}}>$ {price}</Box>
+                    <Box sx={{ color: 'tomato', display: 'inline' }}>$ {price}</Box>
                 </Typography>
                 <Typography
                     paragraph
@@ -100,25 +100,12 @@ const Product = (props) => {
                             <Box
                                 className={classes.btn}
                             >
-                                <Typography variant="caption" sx={{fontWeight:'bold'}}>
-                                     <i className="fas fa-dollar-sign"></i> Purchase</Typography>
+                                <Typography variant="caption" sx={{ fontWeight: 'bold' }}>
+                                    <i className="fas fa-dollar-sign"></i> Purchase</Typography>
                             </Box>
                         </Link>
                     </Box>
-
-                    <Box
-                        onClick={()=>addItem(_id, name, price, img)}
-                        className={classes.btn}
-                        sx={{
-                            width: '10%',
-                            textAlign: 'center',
-                            ml: "4px",
-                        }}>
-                        <Typography
-                            variant="caption" >
-                            <i className="fas fa-cart-plus"></i>
-                        </Typography>
-                    </Box>
+                    <AddTocartBtn info={props.product} />
 
                     <Box
                         className={classes.btn}

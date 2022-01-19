@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import { useState } from 'react';
-
+import Loader from "react-js-loader";
+import { TextField } from '@mui/material';
+import useAuth from '../../../hooks/useAuth';
 
 
 const PaymentCheckOut = ({ info }) => {
@@ -12,18 +14,23 @@ const PaymentCheckOut = ({ info }) => {
     const [clientSecret, setClientSecret] = useState('')
     const [success, setSuccess] = useState('');
     const [processing, setProcessing] = useState(false);
+    const { user } = useAuth()
     useEffect(() => {
         fetch('https://powerful-mountain-89009.herokuapp.com/create-payment-intent', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
             },
-            body: JSON.stringify({ price, name:'rasel', email:'hauladerrasel2@gmail.com' })
+            body: JSON.stringify({ price, name: 'rasel', email: 'hauladerrasel2@gmail.com' })
         })
             .then(res => res.json())
             .then(data => setClientSecret(data.clientSecret))
             .catch(err => console.log(err.message))
     }, []);
+    const inputStyle = {
+        width: '100%',
+        margin: '8px 0',
+    }
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,10 +49,12 @@ const PaymentCheckOut = ({ info }) => {
         if (error) {
             setError(error.message);
             setSuccess('');
+            setProcessing(false);
         }
         else {
             setError('');
             console.log(paymentMethod);
+            setProcessing(false);
         }
         // payment intent
         const { paymentIntent, error: intentError } = await stripe.confirmCardPayment(
@@ -93,6 +102,29 @@ const PaymentCheckOut = ({ info }) => {
     return (
         <div>
             <form onSubmit={handleSubmit}>
+
+                <TextField
+                    id="standard-basic"
+                    variant="standard"
+                    defaultValue={user.displayName}
+                    label="Name"
+                    style={inputStyle} />
+                <TextField
+                    id="standard-basic"
+                    variant="standard"
+                    defaultValue={user.email}
+                    label="Email"
+                    style={inputStyle} />
+                <TextField
+                    id="standard-basic"
+                    variant="standard"
+                    label="Phone"
+                    style={inputStyle} />
+                <TextField
+                    id="standard-basic"
+                    variant="standard"
+                    label="Address"
+                    style={inputStyle} />
                 <CardElement
                     options={{
                         style: {
@@ -109,15 +141,15 @@ const PaymentCheckOut = ({ info }) => {
                         },
                     }}
                 />
-                {processing ? <h1>Loading...</h1> : <button type="submit" disabled={!stripe || success}>
+                {processing ? <Loader type="spinner-cub" bgColor={"tomato"} size={50} /> : <button className='payBtn' type="submit" disabled={!stripe || success}>
                     Pay ${price}
                 </button>}
             </form>
             {
-                error && <p style={{ color: 'red' }}>{error}</p>
+                error && <p style={{ color: 'red', textAlign: 'center' }}>{error}</p>
             }
             {
-                success && <p style={{ color: 'green' }}>{success}</p>
+                success && <p style={{ color: 'green', textAlign: 'center' }}>{success}</p>
             }
         </div>
     );

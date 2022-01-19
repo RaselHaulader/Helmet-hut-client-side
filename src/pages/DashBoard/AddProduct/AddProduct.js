@@ -1,4 +1,4 @@
-import { TextField, Typography } from '@mui/material';
+import { Button, Input, TextField, Typography } from '@mui/material';
 import { Box } from '@mui/system';
 import axios from 'axios';
 import React, { useRef, useState } from 'react';
@@ -10,23 +10,50 @@ const AddProducts = () => {
     const formRef = useRef()
     const [load, setLoad] = useState(false)
     const { register, handleSubmit, formState: { errors } } = useForm();
+  
     const onSubmit = data => {
         setLoad(true)
         data.rating = 4.5
-        axios.post('https://powerful-mountain-89009.herokuapp.com/addProduct', data)
-            .then(res => {
-                if (res.data.acknowledged) {
-                    setLoad(false)
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'Product Added SuccessFully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    formRef.current.reset()
-                }
+        console.log(data);
+        console.log(data.img[0]);
+
+        const rf = new FileReader();
+        rf.readAsDataURL(data.img[0])
+        rf.onloadend = function (event) {
+            const body = new FormData();
+            body.append("image", event.target.result.split(",").pop()); //To delete 'data:image/png;base64,' otherwise imgbb won't process it.
+            body.append("name", data.img[0].name);
+            console.log(data.img[0].name);
+            fetch("https://api.imgbb.com/1/upload?expiration=600&key=b256afeacbf527b86921eb1ec64dbd17", {
+                method: "POST",
+                body: body
             })
+                .then(res => res.json())
+                .then(result => {
+                    console.log(result.data.url)
+                    data.img =  result.data.url
+                    axios.post('https://powerful-mountain-89009.herokuapp.com/addProduct', data)
+                        .then(res => {
+                            if (res.data.acknowledged) {
+                                setLoad(false)
+                                Swal.fire({
+                                    position: 'center',
+                                    icon: 'success',
+                                    title: 'Product Added SuccessFully',
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                })
+                                formRef.current.reset()
+                            }
+                        })
+                })
+                .catch(err => {
+                    setLoad(false)
+                    window.alert('Uploaded Image Type Not Accepted', err.message)
+                })
+
+        }
+
     }
 
     const inputStyle = {
@@ -101,12 +128,7 @@ const AddProducts = () => {
                             {...register("details", { required: true })} />
                         {errors.details && <span>This field is required</span>}
 
-                        <TextField
-                            style={inputStyle}
-                            id="standard-basic"
-                            label="Img URL"
-                            variant="standard"
-                            {...register("img", { required: true })} />
+                        <input  {...register("img", { required: true })} type="file" id="input_img" accept="image/*" />
                         {errors.img && <span>This field is required</span>}
 
                         <input

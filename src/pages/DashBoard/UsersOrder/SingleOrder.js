@@ -1,7 +1,6 @@
 import { Box } from '@mui/system';
 import React from 'react';
 import { Button, Rating, Typography } from '@mui/material';
-import axios from 'axios';
 
 
 const SingleOrder = (props) => {

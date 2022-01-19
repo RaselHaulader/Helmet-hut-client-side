@@ -29,3 +29,38 @@ background-color: rgb(255, 255, 255);
     transform: scaleX(0.7);
   }
 }
+
+#input_img::-webkit-file-upload-button {
+  
+ visibility: hidden;
+}
+#input_img::before{
+  text-align: center;
+  content: 'Select Product Image';
+  display: inline-block;
+  background:  -webkit-linear-gradient(top, #df7575, #d48787);
+  border: 1px solid rgba(153, 153, 153, 0.185);
+  border-radius: 3px;
+  color: rgb(255, 255, 255);
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 14px;
+  width: 100%;
+ }
+
+#input_img{
+  width: 100%;
+  margin: 10px 0;
+  
+}
+
+#input_img:hover::before {
+  border-color: rgba(119, 115, 115, 0.747);
+}
+#input_img:active::before {
+  background: -webkit-linear-gradient(top, #bd2e2e, #b84747);
+}

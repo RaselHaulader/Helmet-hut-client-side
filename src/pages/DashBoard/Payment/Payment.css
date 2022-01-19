@@ -1,7 +1,31 @@
-.a{
-    fontSize: 16px;
-                                color: #d11010;
-                               
-                                    color: #aab7c4;
-                                
+.singleItem-container{
+    display: grid;
+    grid-template-columns: 2fr 3fr 2fr 1fr 2fr;
+    align-items: center;
+    border-bottom: 1px solid rgba(182, 175, 175, 0.349);
+}
+.singleItem-container img{
+  width: 40px;
+}
+.singleItem-container div input{
+    width: 30px;
+}
+.payBtn{
+    width: 100%;
+    padding: 8px;
+    border: none;
+    outline: none;
+    background-color: tomato;
+    color: white;
+    margin: 10px 0;
+}
+.paymentContainer{
+    background-color: rgba(255, 208, 199, 0.651);
+    padding: 20px;
+    border-radius: 10px;
+}
+.itemContainer{
+    background-color: rgba(223, 223, 223, 0.712);
+    padding: 20px;
+    border-radius: 10px;
 }

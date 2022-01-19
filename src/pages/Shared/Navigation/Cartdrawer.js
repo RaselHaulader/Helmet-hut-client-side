@@ -11,6 +11,7 @@ import { Box } from '@mui/system';
 import './style.css';
 import useCart from '../../../hooks/useCart';
 import CartItem from './CartItem';
+import {Link } from 'react-router-dom';
 
 export default function TemporaryDrawer() {
     const { items } = useCart()
@@ -43,7 +44,7 @@ export default function TemporaryDrawer() {
                     <Box
                         sx={{
                             display: 'flex',
-                            justifyContent:'space-between',
+                            justifyContent: 'space-between',
                             color: 'red',
                             padding: '10px',
                             cursor: 'pointer',
@@ -64,12 +65,12 @@ export default function TemporaryDrawer() {
                             items.map(item => <CartItem item={item}></CartItem>)
                         }
                     </Box>
-                    <Typography sx={{ textAlign: 'center', color:'tomato' }}>
+                    <Typography sx={{ textAlign: 'center', color: 'tomato' }}>
 
                         Total Price : {items.reduce((prev, curr) => {
                             return curr.price * curr.count + prev
                         }, 0)} tk </Typography>
-                    <button className='checkOut-btn'>Check Out</button>
+                    <Link to='/dashboard/payment'> <button className='checkOut-btn'>Check Out</button></Link>
                     <Box>
                     </Box>
                 </Drawer>

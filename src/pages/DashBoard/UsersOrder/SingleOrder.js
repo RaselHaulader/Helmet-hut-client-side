@@ -4,7 +4,7 @@ import { Button, Rating, Typography } from '@mui/material';
 
 
 const SingleOrder = (props) => {
-    const { img, title, name, details, price, status, rating, _id, } = props.order
+    const { img, name, price, status, _id, count, date } = props.order
 
     function Item(props) {
         const { sx, ...other } = props;
@@ -30,53 +30,44 @@ const SingleOrder = (props) => {
                 display: 'grid',
                 columnGap: 3,
                 rowGap: 1,
-                gridTemplateColumns: { md: '2fr 3fr 5fr 2fr 2fr 2fr', sm: 'repeat(1fr, 1fr)' },
-                borderBottom: "1px solid #f4f4f4"
+                alignItems: 'center',
+                gridTemplateColumns: { md: '1fr 3fr 3fr 3fr 2fr', sm: 'repeat(1fr, 1fr)' },
+                borderBottom: "1px solid rgba(191, 190, 190, 0.478)"
             }}
         >
             <Item >
                 <Box sx={{ bgcolor: '#f4f4f4', p: 1 }}> <img width="100%" src={img} alt="" /></Box>
             </Item>
             <Item >
-                <Box >
+                <Box sx={{ textAlign: 'center' }}>
                     <Typography
-                        sx={{ fontWeight: 'bold', color: 'gray' }}
-                        variant="h6">
-                        {name}
+                        sx={{ fontWeight: 'bold', color: 'black' }}
+                        variant="p">
+                        {name} <br />
                     </Typography>
                     <Typography
-                        sx={{ color: 'gray' }}
+                        sx={{ fontWeight: 'bold', color: 'gray' }}
                         variant="caption">
-                        {title}
-                    </Typography> <br />
-                    <Rating
-                        size="small"
-                        name="half-rating-read"
-                        defaultValue={rating}
-                        precision={0.5}
-                        readOnly />
+                        {date}
+                    </Typography>
+
                 </Box>
-            </Item>
-            <Item>
-                <Typography
-                    sx={{ color: 'gray' }}
-                    paragraph>
-                    {details}
-                </Typography>
             </Item>
             <Item
                 sx={{
                     alignItems: 'center',
                     display: 'flex',
+                    justifyContent: 'center',
                     textAlign: { md: 'center' }
                 }}>
-                ${price}
+                {count + ' x ' + price + ' = ' + price * count} $
             </Item>
             <Item
                 sx={{
                     color: 'dodgerBlue',
                     alignItems: 'center',
                     display: 'flex',
+                    justifyContent: 'center',
                     textAlign: { md: 'center' }
                 }}>
                 {status}

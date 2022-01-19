@@ -65,12 +65,8 @@ export default function TemporaryDrawer() {
                             items.map(item => <CartItem item={item}></CartItem>)
                         }
                     </Box>
-                    <Typography sx={{ textAlign: 'center', color: 'tomato' }}>
-
-                        Total Price : {items.reduce((prev, curr) => {
-                            return curr.price * curr.count + prev
-                        }, 0)} tk </Typography>
-                    <Link to='/dashboard/payment'> <button className='checkOut-btn'>Check Out</button></Link>
+                    
+                    <Link to='/dashboard/payment'> <button disabled={items.length == 0} className='checkOut-btn'>Check Out</button></Link>
                     <Box>
                     </Box>
                 </Drawer>

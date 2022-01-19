@@ -6,18 +6,19 @@ const useCartItem = () => {
     const { user } = useAuth()
     const [items, setItems] = useState([]);
     const saveCartToDb = (data) => {
-        axios.post('http://localhost:5000/saveCart', data)
+        axios.post('https://powerful-mountain-89009.herokuapp.com/saveCart', data)
             .then(res => console.log(res))
     }
     useEffect(() => {
 
-        user.email && axios.post('http://localhost:5000/getCart', { email: user.email })
-            .then(res =>{  
+        user.email ? axios.post('https://powerful-mountain-89009.herokuapp.com/getCart', { email: user.email })
+            .then(res => {
                 console.log(res.data)
                 setItems(res.data)
-            })
+            }) : setItems([])
 
     }, [user])
+
     const addItem = (id, name, price, img) => {
         const existingItems = [...items]
         const check = existingItems.filter(item => item.id == id)
@@ -55,7 +56,9 @@ const useCartItem = () => {
     return {
         items,
         addItem,
-        removeItem
+        removeItem,
+        setItems,
+        saveCartToDb
     }
 }
 

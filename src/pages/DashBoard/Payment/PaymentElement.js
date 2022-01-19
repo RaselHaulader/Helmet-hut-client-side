@@ -13,7 +13,8 @@ const PaymentElement = () => {
         name: user.displayName,
         price: items.reduce((prev, curr) => {
             return curr.price * curr.count + prev
-        }, 0)
+        }, 0),
+        email:user.email
     }
    
     return (

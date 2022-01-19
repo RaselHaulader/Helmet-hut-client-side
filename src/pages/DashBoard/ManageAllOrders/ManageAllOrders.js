@@ -8,7 +8,7 @@ import Loader from "react-js-loader";
 const ManageAllOrders = () => {
     const [orders, setOrders] = useState([]);
     const [load, setLoad] = useState(false)
-    const [pending, setPending] = useState(0);
+    const [paid, setPaid] = useState(0);
     const [delivered, setDelivered] = useState(0);
     const [shipped, setShipped] = useState(0);
     const [load2, setLoad2] = useState({})
@@ -23,8 +23,8 @@ const ManageAllOrders = () => {
     }, [])
     //count status
     useEffect(() => {
-        const pending = orders.filter(order => order.status === 'pending')
-        setPending(pending.length)
+        const Paid = orders.filter(order => order.status === 'Paid')
+        setPaid(Paid.length)
         const shipped = orders.filter(order => order.status === 'Shipped')
         setShipped(shipped.length)
         const delivered = orders.filter(order => order.status === 'Delivered')
@@ -76,7 +76,7 @@ const ManageAllOrders = () => {
                         justifyContent: 'space-evenly'
                     }}>
                     <Box> Total Order: {orders.length}</Box>
-                    <Box > Pending:{pending}</Box>
+                    <Box > Pending:{paid}</Box>
                     <Box > Shipped: {shipped}</Box>
                     <Box> Delivered:{delivered}</Box>
                 </Typography>

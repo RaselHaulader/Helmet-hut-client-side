@@ -2,6 +2,8 @@ import { Box, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 import React from 'react';
+import { useHistory } from 'react-router-dom';
+import useAuth from '../../../hooks/useAuth';
 import useCart from '../../../hooks/useCart';
 const useStyles = makeStyles({
     btn: {
@@ -16,11 +18,18 @@ const useStyles = makeStyles({
 const AddTocartBtn = ({ info }) => {
     const { _id, name, price, img } = info;
     const { addItem } = useCart()
+    const {user} = useAuth()
+    const history = useHistory()
 
     const classes = useStyles();
     return (
         <Box
-            onClick={() => addItem(_id, name, price, img)}
+            onClick={() =>{
+                if (!user.email) {
+                    history.push('/login')
+                }
+                addItem(_id, name, price, img)
+            }}
             className={classes.btn}
             sx={{
                 width: '10%',

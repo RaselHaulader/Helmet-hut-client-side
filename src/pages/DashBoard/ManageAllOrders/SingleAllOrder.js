@@ -78,7 +78,7 @@ const SingleAllOrder = (props) => {
                 <Box sx={{ color: 'dodgerblue' }}>  {load2.load && load2.id === _id ? <Loader type="spinner-cub" bgColor={"tomato"} size={20} /> : status}</Box>
             </Item>
             <Item sx={{ alignItems: 'center', justifyContent: 'center', flexDirection: 'column', display: 'flex', textAlign: { md: 'center' } }}>
-                {status === 'pending' ?
+                {status === 'Paid' ?
                     <Button
                         size="small"
                         sx={{ width: '100%', bgcolor: '#3b68fd4f' }}

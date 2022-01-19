@@ -57,7 +57,7 @@ const Purchase = () => {
         delete productWithoutId._id
         axios.post('https://powerful-mountain-89009.herokuapp.com/placeOrder', { ...data, ...productWithoutId })
             .then(res => {
-               
+
                 if (res.data.acknowledged) {
                     setLoad2(false)
                     Swal.fire({

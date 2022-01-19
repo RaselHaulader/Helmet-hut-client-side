@@ -67,7 +67,7 @@ const Login = () => {
           }
           saveUserInfo(userInfo)
           // redirect to location
-          history.push(location?.state?.from?.pathname || '/dashboard')
+          history.push(location?.state?.from?.pathname || '/home')
           setError('')
         })
         .catch((error) => {

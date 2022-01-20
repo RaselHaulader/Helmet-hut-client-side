@@ -9,6 +9,7 @@ import axios from 'axios'
 import useAuth from '../../hooks/useAuth';
 import Loader from "react-js-loader";
 import Swal from 'sweetalert2'
+import useCart from '../../hooks/useCart';
 
 
 function Item(props) {
@@ -34,7 +35,7 @@ const Purchase = () => {
     const formReset = useRef()
     const [load, setLoad] = useState(false)
     const [load2, setLoad2] = useState(false)
-
+    const {addItem} = useCart()
     useEffect(() => {
         setLoad(true)
         axios.get(`https://powerful-mountain-89009.herokuapp.com/selectedItem/${id}`)
@@ -53,23 +54,10 @@ const Purchase = () => {
 
     const onSubmit = data => {
         setLoad2(true)
-        const productWithoutId = { ...product }
-        delete productWithoutId._id
-        axios.post('https://powerful-mountain-89009.herokuapp.com/placeOrder', { ...data, ...productWithoutId })
-            .then(res => {
-
-                if (res.data.acknowledged) {
-                    setLoad2(false)
-                    Swal.fire({
-                        position: 'center',
-                        icon: 'success',
-                        title: 'order Placed Successfully',
-                        showConfirmButton: false,
-                        timer: 1500
-                    })
-                    formReset.current.reset()
-                }
-            })
+        console.log(data);
+        const {_id, name, price, img } = product
+        addItem(id, name, price, img)
+        setLoad2(false)
     }
 
     const inputStyle = {
@@ -178,7 +166,7 @@ const Purchase = () => {
                                             {...register("description", { required: true })} />
                                         {errors.description && <span>This field is required</span>}
                                     </Box>
-                                    <input style={{ color: 'white', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Place Order" />
+                                    <input style={{ color: 'white', width: '100%', border: 'none', padding: '10px 15px', background: 'tomato', cursor: 'pointer' }} type="submit" value="Add to Cart" />
                                 </form>
                             </Box>
                         </Item>

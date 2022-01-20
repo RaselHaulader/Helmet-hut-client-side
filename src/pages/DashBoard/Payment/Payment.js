@@ -25,7 +25,7 @@ const Payment = () => {
                     {items.length === 0 ? <Typography sx={{ textAlign: 'center', color: 'tomato' }}>
                         Your Cart is Empty
                     </Typography> :
-                        <Box sx={{ display:'flex',margin:'10px 0', justifyContent:'space-evenly', color: 'tomato' }}>
+                        <Box sx={{ display:'flex',margin:'10px 0',fontSize:'14px', fontWeight:'bold', justifyContent:'space-evenly', color: 'black' }}>
                     <span>
                         Total Item : {items.reduce((prev, curr) => {
                             return curr.count + prev

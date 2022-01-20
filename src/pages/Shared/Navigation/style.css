@@ -32,7 +32,7 @@
     cursor: pointer;
     display: inline;
 }
-.cartItem-container input{
+.cartItem-container p{
     width: 20px;
     border: none;
     background-color: rgb(231, 231, 231);

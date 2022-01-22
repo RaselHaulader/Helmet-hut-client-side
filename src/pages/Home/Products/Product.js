@@ -95,7 +95,7 @@ const Product = (props) => {
                         display: 'flex',
                         mt: 1
                     }}>
-                    <Box sx={{ width: '40%', textAlign: 'center' }}>
+                    <Box sx={{ width: '50%', textAlign: 'center' }}>
                         <Link to={`/purchase/${_id}`} style={{ textDecoration: 'none', color: 'black' }}>
                             <Box
                                 className={classes.btn}
@@ -106,20 +106,6 @@ const Product = (props) => {
                         </Link>
                     </Box>
                     <AddTocartBtn info={props.product} />
-
-                    <Box
-                        className={classes.btn}
-                        sx={{
-                            width: '10%',
-                            textAlign: 'center',
-                            ml: "4px"
-                        }}>
-
-                        <Typography
-                            variant="caption" >
-                            <i className="far fa-heart"></i>
-                        </Typography>
-                    </Box>
                 </Box>
             </Box>
         </Item >

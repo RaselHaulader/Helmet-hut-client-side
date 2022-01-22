@@ -32,7 +32,7 @@ const AddTocartBtn = ({ info }) => {
             }}
             className={classes.btn}
             sx={{
-                width: '10%',
+                width: '50%',
                 textAlign: 'center',
                 ml: "4px",
             }}>
